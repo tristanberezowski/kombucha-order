@@ -1,1 +1,6 @@
 <h1>HOME INDEX</h1>
+
+<% if admin_signed_in? %>
+    
+    <%= link_to "Create Account", new_user_registration_path %>
+<% end %>
