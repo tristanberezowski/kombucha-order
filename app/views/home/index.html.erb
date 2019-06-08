@@ -3,4 +3,7 @@
 <% if admin_signed_in? %>
     
     <%= link_to "Create Account", new_user_registration_path %>
+    <% if user_signed_in? %>
+        <%= link_to "Edit #{current_user.email}", edit_user_registration_path %>
+    <% end %>
 <% end %>
