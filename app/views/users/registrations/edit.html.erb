@@ -1,19 +1,5 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-
-<%= form_tag '/user_exemptions' do %>
-
-  <div class="form-group">
-    Delivery Fee: <%= text_field_tag :delivery_fee %>
-  </div>
-
-  <div class="form-group">
-    Minimum Price of Order: <%= text_field_tag :order_minimum %>
-  </div>
-
-  <%= submit_tag 'Update.', class: 'btn btn-primary' %>
-<% end %> 
-
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
@@ -44,6 +30,6 @@
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= link_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

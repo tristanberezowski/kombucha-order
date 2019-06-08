@@ -1,4 +1,7 @@
 class UserExemptionsController < ApplicationController
+    
+    before_action :authenticate_admin!
+
     def update
         user_id = current_user.id
         user_exemption = UserExemption.where(user_id: user_id).first_or_create(
