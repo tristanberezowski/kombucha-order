@@ -1,0 +1,4 @@
+en:
+  products:
+    create:
+      success: 'Product successfully created.'
