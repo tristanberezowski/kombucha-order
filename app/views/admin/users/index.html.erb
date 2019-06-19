@@ -1,0 +1,6 @@
+<h2>Users</h2>
+
+<% @users.each do |u| %>
+    <div><%= u.email %></div>
+    <a href="/admin/users/<%= u.id %>">Edit</a>
+<% end %>

@@ -21,6 +21,7 @@ module App
       generate.stylesheets false
       generate.test_framework :rspec
       generate.view_specs false
+      generate.controller_specs false
     end
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.load_defaults 5.2
