@@ -1,6 +1,4 @@
-class Admin::ProductsController < ApplicationController
-  before_action :authenticate_admin!
-
+class Admin::ProductsController < Admin::ApplicationController
   def index
   end
 
