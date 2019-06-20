@@ -1,0 +1,13 @@
+<%= simple_form_for [:admin, @product] do |f| %>
+  <section class="form-inputs">
+    <%= f.input :name, input_html: { value: @old.name } %>
+    <%= f.input :price, input_html: { value: @old.price } %>
+
+    <%= f.input :rentable, input_html: { checked: @old.rentable } %>
+    <%= f.input :purchasable, input_html: { checked: @old.purchasable } %>
+  </section>
+
+  <section class="form-links">
+    <%= f.submit %>
+  </section>
+<% end %>

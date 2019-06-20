@@ -1,5 +1,6 @@
 class Admin::ProductsController < Admin::ApplicationController
   def index
+    @products = Product.all.order(name: :desc)
   end
 
   def show
@@ -10,6 +11,8 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def edit
+    @product = Product.new
+    @old = Product.where(["id = ?", params[:id]]).first
   end
 
   def create
