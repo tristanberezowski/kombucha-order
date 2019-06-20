@@ -1,2 +1,10 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<section class="product-show">
+  <h1>Product: <%= @product.name %></h1>
+
+  <%= link_to 'Edit', edit_admin_product_path(@product) %>
+
+  <p>
+    <strong>Price:</strong>
+    <%= humanized_money_with_symbol @product.price %>
+  </p>
+</section>

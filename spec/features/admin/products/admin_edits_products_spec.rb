@@ -12,31 +12,23 @@ feature 'Admin updates products' do
   end
 
   context 'when signed in as an admin' do
+    let(:product) { create(:product) }
+
     before do
       sign_in admin
     end
 
-    scenario 'from the admin products edit page' do
-      visit admin_products_path
-
-      click_on 'New Product'
-
-      fill_in 'Name', with: 'Bucha'
-      fill_in 'Price', with: '5.00'
-
-      check 'Purchasable'
-      check 'Rentable'
-
-      click_on 'Create Product'
-      expect(page).to have_content "Bucha"
-      expect(page).to have_content "5.00"
+    scenario 'from the admin product page' do
+      visit admin_product_path(product)
 
       click_link 'Edit'
-      
+
       fill_in 'Name', with: 'Kombucha'
       fill_in 'Price', with: '3.00'
-      save_and_open_page
 
+      click_on 'Update Product'
+
+      expect(page).to have_content t('products.update.success')
     end
   end
 

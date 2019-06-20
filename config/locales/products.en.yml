@@ -2,3 +2,5 @@ en:
   products:
     create:
       success: 'Product successfully created.'
+    update:
+      success: 'Product was updated successfully.'

@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'products/index'
-    get 'products/new'
-    get 'products/edit/:id', to: 'products#edit', as: 'products_edit'
-    get 'products/show'
-  end
     root to: "home#index"
 
     get 'admin/users/:id', to: 'admin/users#show'
@@ -18,6 +12,6 @@ Rails.application.routes.draw do
     }
 
     namespace :admin do
-      resources :products, only: [:edit, :new, :index, :create]
+      resources :products
     end
 end

@@ -1,4 +1,6 @@
 class Admin::ProductsController < Admin::ApplicationController
+  before_action :set_product, only: [:show, :edit, :update]
+
   def index
     @products = Product.all.order(name: :desc)
   end
@@ -11,8 +13,6 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def edit
-    @product = Product.new
-    @old = Product.where(["id = ?", params[:id]]).first
   end
 
   def create
@@ -25,6 +25,16 @@ class Admin::ProductsController < Admin::ApplicationController
     end
   end
 
+  def update
+    if @product.update(product_params)
+      redirect_to(
+        admin_product_path(@product), notice: t('products.update.success')
+      )
+    else
+      render :edit
+    end
+  end
+
   private
 
   def product_params
@@ -34,5 +44,9 @@ class Admin::ProductsController < Admin::ApplicationController
       :rentable,
       :purchasable
     )
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
