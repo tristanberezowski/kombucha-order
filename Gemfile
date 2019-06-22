@@ -24,7 +24,8 @@ gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 gem "uglifier"
 gem "bootsnap", require: false
 gem "devise"
-
+gem "ffaker"
+gem 'money-rails', '~>1.12'
 
 group :development do
   gem "listen"
