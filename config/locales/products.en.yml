@@ -4,3 +4,5 @@ en:
       success: 'Product successfully created.'
     update:
       success: 'Product was updated successfully.'
+    destroy:
+      success: 'Product was deleted successfully.'

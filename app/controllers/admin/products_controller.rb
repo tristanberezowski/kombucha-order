@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::ApplicationController
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.all.order(name: :desc)
@@ -32,6 +32,14 @@ class Admin::ProductsController < Admin::ApplicationController
       )
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @product.destroy
+      redirect_to admin_products_path, notice: t('products.destroy.success')
+    else
+      render :index
     end
   end
 
