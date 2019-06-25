@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
+  get 'carts/show'
     root to: "home#index"
-
-    get 'admin/users/:id', to: 'admin/users#show'
-    get 'admin/users', to: 'admin/users#index'
-    post '/user_exemptions/', to: 'user_exemptions#update'
 
     devise_for :admins
     devise_for :users, controllers: {
@@ -11,7 +8,21 @@ Rails.application.routes.draw do
       sessions: 'users/sessions'
     }
 
+    resources :products, only: [:index]
+
+    resource :cart, only: [:show]
+
+    namespace :cart do
+      resources :products, only: [] do
+        member do
+          post :create
+        end
+      end
+    end
+
     namespace :admin do
       resources :products
+      resources :users, only: [:show, :index]
+      resources :user_exemptions, only: [:update]
     end
 end

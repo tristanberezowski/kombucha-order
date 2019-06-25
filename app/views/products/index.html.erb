@@ -1,0 +1,17 @@
+<section class="product-index">
+  <h1>Products</h1>
+
+  <% @products.each do |product| %>
+    <article>
+      <header>
+        <h1><%= product.name %></h1>
+      </header>
+
+      <p><%= humanized_money_with_symbol product.price %></p>
+
+      <section class="product-links">
+        <%= button_to 'Add to Cart', cart_product_path(product) %>
+      </section>
+    </article>
+  <% end %>
+</section>
