@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_052245) do
+ActiveRecord::Schema.define(version: 2019_06_25_211359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,37 +58,23 @@ ActiveRecord::Schema.define(version: 2019_06_25_052245) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "order_billing_informations", force: :cascade do |t|
-    t.bigint "order_id"
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "province"
-    t.string "postal"
-    t.string "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_billing_informations_on_order_id"
-  end
-
-  create_table "order_shipping_informations", force: :cascade do |t|
-    t.bigint "order_id"
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "province"
-    t.string "postal"
-    t.string "country"
-    t.string "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_shipping_informations_on_order_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "billing_name"
+    t.string "billing_address"
+    t.string "billing_city"
+    t.string "billing_province"
+    t.string "billing_postal"
+    t.string "billing_country"
+    t.string "shipping_name"
+    t.string "shipping_address"
+    t.string "shipping_city"
+    t.string "shipping_province"
+    t.string "shipping_postal"
+    t.string "shipping_country"
+    t.string "note"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -124,8 +110,6 @@ ActiveRecord::Schema.define(version: 2019_06_25_052245) do
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
-  add_foreign_key "order_billing_informations", "orders"
-  add_foreign_key "order_shipping_informations", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "user_exemptions", "users"
 end

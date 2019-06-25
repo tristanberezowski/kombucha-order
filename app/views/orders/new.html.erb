@@ -1,31 +1,5 @@
 <section class="orders-new">
-    <header>
-        <h1>Review your order</h1>
-    </header>
+  <h1>Review your order</h1>
 
-    <%= simple_form_for @order do |o| %>
-        <section class='billing-information'>
-            <%= o.simple_fields_for :order_billing_information do |b| %>
-                <%= b.input :name %>
-                <%= b.input :address %>
-                <%= b.input :city %>
-                <%= b.input :province, label: 'State/Province' %>
-                <%= b.input :postal, label: 'Postal/Zip Code' %>
-                <%= b.input :country, label: 'Country' %>
-            <% end %>
-        </section>
-        <section class='shipping-information'>
-            <%= o.simple_fields_for :order_shipping_information do |s| %>
-                <%= s.input :name %>
-                <%= s.input :address %>
-                <%= s.input :city %>
-                <%= s.input :province, label: 'State/Province' %>
-                <%= s.input :postal, label: 'Postal/Zip Code' %>
-                <%= s.input :country, label: 'Country' %>
-                <%= s.input :note, label: 'Notes for Delivery' %>
-            <% end %>
-        </section>
-        <%= o.submit 'Save' %>
-        <%= o.submit 'Proceed to Payment' %>
-    <% end %>
+  <%= render "form", order: @order %>
 </section>
