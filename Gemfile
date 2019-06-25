@@ -26,6 +26,7 @@ gem "bootsnap", require: false
 gem "devise"
 gem "ffaker"
 gem 'money-rails', '~>1.12'
+gem 'country_select'
 
 group :development do
   gem "listen"

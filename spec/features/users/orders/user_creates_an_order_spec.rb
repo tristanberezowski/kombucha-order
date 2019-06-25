@@ -32,7 +32,7 @@ feature 'User creates an order' do
     click_on 'Cart'
 
     click_on 'Checkout'
-
+    
     place_order
 
     click_on 'Proceed to Payment'
@@ -47,21 +47,25 @@ feature 'User creates an order' do
   end
 
   def fill_in_billing_information
-    fill_in 'Name', with: FFaker::Name.name
-    fill_in 'Address', with: FFaker::Address.street_address
-    fill_in 'City', with: FFaker::Address.city
-    fill_in 'State/Province', with: FFaker::AddressUS.state
-    fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
-    fill_in 'Country', with: FFaker::Address.country
+    within('section.billing-information') do
+      fill_in 'Name', with: FFaker::Name.name
+      fill_in 'Address', with: FFaker::Address.street_address
+      fill_in 'City', with: FFaker::Address.city
+      fill_in 'State/Province', with: FFaker::AddressUS.state
+      fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
+      select value = 'Canada', from: 'Country'
+    end
   end
 
   def fill_in_shipping_information
-    fill_in 'Name', with: FFaker::Name.name
-    fill_in 'Address', with: FFaker::Address.street_address
-    fill_in 'City', with: FFaker::Address.city
-    fill_in 'State/Province', with: FFaker::AddressUS.state
-    fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
-    fill_in 'Country', with: FFaker::Address.country
-    fill_in 'Note', with: FFaker::Lorem.paragraph
+    within('section.shipping-information') do
+      fill_in 'Name', with: FFaker::Name.name
+      fill_in 'Address', with: FFaker::Address.street_address
+      fill_in 'City', with: FFaker::Address.city
+      fill_in 'State/Province', with: FFaker::AddressUS.state
+      fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
+      select value = 'Canada', from: 'Country'
+      fill_in 'Notes for Delivery', with: FFaker::Lorem.paragraph
+    end
   end
 end

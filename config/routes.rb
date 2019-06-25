@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/new'
+  get 'orders/show'
   get 'carts/show'
     root to: "home#index"
 
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
 
     resource :cart, only: [:show]
+
+    resources :orders, only: [:new, :create, :show]
 
     namespace :cart do
       resources :products, only: [] do
