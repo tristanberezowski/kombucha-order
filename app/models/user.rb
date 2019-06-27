@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_one :user_exemption
   has_one :cart
+
+  def cart
+    Cart.find_or_create_by!(user: self)
+  end
 end

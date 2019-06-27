@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
+    @order.products = current_user.cart.products
 
     if @order.save
       redirect_to @order, notice: t('orders.create.success')
@@ -17,6 +18,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def order_params

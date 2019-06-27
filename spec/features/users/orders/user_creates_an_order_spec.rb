@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User creates an order' do
   before do
-    create(:product)
+    create(:product, price: Money.new(500))
     sign_in_user
   end
 
@@ -16,32 +16,20 @@ feature 'User creates an order' do
     end
 
     click_on 'Checkout'
-
-    place_order
+  
+    fill_in_order_information
 
     click_on 'Save'
 
     expect(page).to have_content t('orders.create.success')
+    expect(page).to have_content total
   end
 
-  scenario 'by placing it right away' do
-    visit products_path
-
-    click_on 'Add to Cart'
-
-    click_on 'Cart'
-
-    click_on 'Checkout'
-
-    place_order
-
-    click_on 'Proceed to Payment'
-
-    expect(page).to have_content t('orders.create.success')
+  def total
+    '$5.00'
   end
 
-
-  def place_order
+  def fill_in_order_information
     fill_in_billing_information
     fill_in_shipping_information
     fill_in 'Note', with: FFaker::Lorem.paragraph
