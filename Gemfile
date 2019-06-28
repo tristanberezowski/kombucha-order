@@ -26,6 +26,7 @@ gem "bootsnap", require: false
 gem "devise"
 gem "ffaker"
 gem 'money-rails', '~>1.12'
+gem 'country_select'
 
 group :development do
   gem "listen"
@@ -48,6 +49,7 @@ group :test do
   gem "simplecov", require: false
   gem "timecop"
   gem "webmock"
+  gem "database_cleaner"
 end
 
 gem "suspenders", group: [:development, :test]

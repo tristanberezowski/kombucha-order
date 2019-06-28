@@ -1,0 +1,4 @@
+en:
+  orders:
+    create:
+      success: 'Order created successfully'

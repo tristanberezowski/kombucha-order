@@ -1,0 +1,9 @@
+<h1> View Order </h1>
+
+<% @order.products.each do |product| %>
+    <article>
+        <p><%= product.name %></p>
+        <p><%= product.price %></p>
+    </article>
+<% end %>
+<h3><%="Total: #{humanized_money_with_symbol @order.total}"%></h3>
