@@ -7,4 +7,8 @@ class Order < ApplicationRecord
     product_prices = products.map(&:price)
     product_prices.inject(Money.new(0), &:+)
   end
+
+  def email
+    user.email
+  end
 end

@@ -5,7 +5,7 @@ feature 'Admin creates a product' do
 
   context 'when signed in as an admin' do
     before do
-      sign_in_admin admin
+      sign_in_admin
     end
 
     scenario 'from the admin products page' do
