@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'flavours/index'
+    get 'flavours/new'
+  end
+  namespace :admin do
+    get 'liquids/index'
+    get 'liquids/new'
+    get 'liquids/show'
+  end
   get 'orders/new'
   get 'orders/show'
   get 'carts/show'
@@ -11,7 +20,6 @@ Rails.application.routes.draw do
     }
 
     resources :products, only: [:index]
-
     resource :cart, only: [:show]
 
     resources :orders, only: [:new, :create, :show]
@@ -26,6 +34,13 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :products
+      resources :liquids, only: [
+        :index, :new, :create
+      ]
+
+      resources :flavours, only: [
+        :index, :new, :create
+      ]
       resources :users, only: [:show, :index]
       resources :user_exemptions, only: [:update]
     end

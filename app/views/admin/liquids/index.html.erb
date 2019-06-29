@@ -1,0 +1,7 @@
+<section class="admin-liquids-index">
+  <h1>Manage Liquids</h1>
+  <% @liquids.each do |liquid| %>
+    <a href="/admin/liquids/<%= liquid.id %>"><%= liquid.name %></a>
+  <% end %>
+  <a href="/admin/liquids/new">Create new liquid type</a>
+</section>

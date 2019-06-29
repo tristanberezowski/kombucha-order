@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_220025) do
+ActiveRecord::Schema.define(version: 2019_06_29_031442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,17 +58,19 @@ ActiveRecord::Schema.define(version: 2019_06_25_220025) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "order_billing_informations", force: :cascade do |t|
-    t.bigint "order_id"
+  create_table "flavours", force: :cascade do |t|
+    t.bigint "liquid_id"
     t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "province"
-    t.string "postal"
-    t.string "country"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_billing_informations_on_order_id"
+    t.index ["liquid_id"], name: "index_flavours_on_liquid_id"
+  end
+
+  create_table "liquids", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_products", force: :cascade do |t|
@@ -78,20 +80,6 @@ ActiveRecord::Schema.define(version: 2019_06_25_220025) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_products_on_order_id"
     t.index ["product_id"], name: "index_order_products_on_product_id"
-  end
-
-  create_table "order_shipping_informations", force: :cascade do |t|
-    t.bigint "order_id"
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "province"
-    t.string "postal"
-    t.string "country"
-    t.string "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_shipping_informations_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -146,10 +134,9 @@ ActiveRecord::Schema.define(version: 2019_06_25_220025) do
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
-  add_foreign_key "order_billing_informations", "orders"
+  add_foreign_key "flavours", "liquids"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
-  add_foreign_key "order_shipping_informations", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "user_exemptions", "users"
 end
