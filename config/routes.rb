@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'orders/index'
     get 'flavours/index'
     get 'flavours/new'
   end
@@ -43,5 +44,6 @@ Rails.application.routes.draw do
       ]
       resources :users, only: [:show, :index]
       resources :user_exemptions, only: [:update]
+      resources :orders, only: [:show, :index]
     end
 end

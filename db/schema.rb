@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 2019_06_29_031442) do
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
+  create_table "order_products", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "flavours", force: :cascade do |t|
     t.bigint "liquid_id"
@@ -81,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_031442) do
     t.index ["order_id"], name: "index_order_products_on_order_id"
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end
-
+  
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false

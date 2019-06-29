@@ -1,0 +1,10 @@
+<section class="admin-orders-index">
+  <h1>View Orders</h1>
+
+  <% @orders.each do |order| %>
+    <p>Name: <%= order.shipping_name %></p>
+    <p>Created at: <%= order.created_at %></p>
+    <a class="show-order" href="/admin/orders/<%= order.id %>">View order</a>
+    <br>
+  <% end %>
+</section>
