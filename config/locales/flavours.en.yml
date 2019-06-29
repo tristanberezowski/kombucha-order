@@ -1,0 +1,4 @@
+en:
+  flavours:
+    create:
+      success: "Flavour created successfully"
