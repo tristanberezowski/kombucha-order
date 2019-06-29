@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, flavour] do |f| %>
+  <section class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :liquid, label: "Select Liquid", collection: @liquids %>
+  </section>
+
+  <section class="form-links">
+    <%= f.submit %>
+  </section>
+<% end %>

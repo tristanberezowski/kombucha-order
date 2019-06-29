@@ -15,7 +15,7 @@ class Admin::LiquidsController < Admin::ApplicationController
 
     if @liquid.save
       redirect_to(
-        admin_liquid_path(@liquid), 
+        admin_liquids_path, 
         notice: t('liquids.create.success')
       )
     else
