@@ -1,0 +1,4 @@
+en:
+  liquids:
+    create:
+      success: "Liquid type created successfully"
