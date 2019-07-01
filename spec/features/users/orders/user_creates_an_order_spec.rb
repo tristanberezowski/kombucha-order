@@ -9,6 +9,14 @@ feature 'User creates an order' do
   scenario 'by saving it for later' do
     visit products_path
 
+    within '.keg' do
+      fill_in 'Quantity', with: '1'
+    end
+
+    within '.growler' do
+      fill_in 'Quantity', with: '2'
+    end
+
     click_on 'Add to Cart'
 
     within '.navigation' do
@@ -16,7 +24,7 @@ feature 'User creates an order' do
     end
 
     click_on 'Checkout'
-  
+
     fill_in_order_information
 
     click_on 'Save'

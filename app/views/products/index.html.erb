@@ -10,7 +10,14 @@
       <p><%= humanized_money_with_symbol product.price %></p>
 
       <section class="product-links">
-        <%= button_to 'Add to Cart', cart_product_path(product) %>
+        <%= simple_form_for CartProduct.new, url: cart_product_path(product) do |f| %>
+          <% product.available_containers.each do |container| %>
+            <fieldset class=<%= container.name.underscore.downcase %>>
+              <%= f.input :quantity %>
+            </fieldset>
+          <% end %>
+          <%= f.submit 'Add to Cart', cart_product_path(product) %>
+        <% end %>
       </section>
     </article>
   <% end %>
