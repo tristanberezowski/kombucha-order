@@ -1,0 +1,10 @@
+<%= simple_form_for [ :admin, container ] do |f| %>
+    <section class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :volume %>
+  </section>
+
+  <section class="form-links">
+    <%= f.submit %>
+  </section>
+<% end %>

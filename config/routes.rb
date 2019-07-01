@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'container/index'
+    get 'container/new'
+  end
+  namespace :admin do
     get 'orders/index'
     get 'flavours/index'
     get 'flavours/new'
@@ -38,8 +42,10 @@ Rails.application.routes.draw do
       resources :liquids, only: [
         :index, :new, :create
       ]
-
       resources :flavours, only: [
+        :index, :new, :create
+      ]
+      resources :containers, only: [
         :index, :new, :create
       ]
       resources :users, only: [:show, :index]

@@ -1,0 +1,6 @@
+<section class='admin-containers-index'>
+  <% @containers.each do |container| %>
+    <p><%= container.name %> | <%= container.volume %>mL</p>
+  <% end %>
+  <a href="/admin/containers/new">New Container</a>
+</section>
