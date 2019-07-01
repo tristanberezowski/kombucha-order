@@ -10,7 +10,7 @@ class Admin::ContainersController < Admin::ApplicationController
   def create
     @container = Container.new(container_params)
     if @container.save
-      redirect_to admin_container_path(@container)
+      redirect_to admin_containers_path, notice: t('containers.create.success')
     else
       render :new
     end

@@ -1,21 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'container/index'
-    get 'container/new'
-  end
-  namespace :admin do
-    get 'orders/index'
-    get 'flavours/index'
-    get 'flavours/new'
-  end
-  namespace :admin do
-    get 'liquids/index'
-    get 'liquids/new'
-    get 'liquids/show'
-  end
-  get 'orders/new'
-  get 'orders/show'
-  get 'carts/show'
     root to: "home#index"
 
     devise_for :admins
