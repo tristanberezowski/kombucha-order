@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 feature 'User creates an order' do
+  let(:keg) { create(:keg) }
+  let(:growler) { create(:growler) }
+  let(:product) { create(:product, price: Money.new(500)) }
+
   before do
-    create(:product, price: Money.new(500))
+    create(:product_container, product: product, container: keg)
+    create(:product_container, product: product, container: growler)
     sign_in_user
   end
 
@@ -30,6 +35,8 @@ feature 'User creates an order' do
     click_on 'Save'
 
     expect(page).to have_content t('orders.create.success')
+    expect(page).to have_content '2x Growler'
+    expect(page).to have_content '1x Keg'
     expect(page).to have_content total
   end
 

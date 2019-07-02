@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user = current_user
-    @order.products = current_user.cart.products
+    @order.add_products(cart_products)
 
     if @order.save
       redirect_to @order, notice: t('orders.create.success')
@@ -37,5 +37,10 @@ class OrdersController < ApplicationController
       :shipping_country,
       :note
     )
+
+  end
+
+  def cart_products
+    current_user.cart.products
   end
 end

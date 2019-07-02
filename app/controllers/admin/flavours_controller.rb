@@ -17,7 +17,6 @@ class Admin::FlavoursController < Admin::ApplicationController
     else
       render :index
     end
-    
   end
 
   def flavour_params
@@ -26,6 +25,7 @@ class Admin::FlavoursController < Admin::ApplicationController
       :description,
       :liquid
     )
+    #TODO: DISGUSTING!!!
     new_flavour[:liquid] = Liquid.find new_flavour[:liquid]
     new_flavour
   end

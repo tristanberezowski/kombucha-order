@@ -1,7 +1,11 @@
 <%= simple_form_for [:admin, product] do |f| %>
   <section class="form-inputs">
+    <%= f.input :selectable_type, as: :hidden, value: product.selectable_type %>
     <%= f.input :name %>
-    <%= f.input :price %>
+
+    <%= f.simple_fields_for :selectable do |selectable| %>
+      <%= render product.selectable.to_partial, f: selectable %>
+    <% end %>
 
     <%= f.input :rentable %>
     <%= f.input :purchasable %>

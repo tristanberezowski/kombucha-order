@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_083653) do
+ActiveRecord::Schema.define(version: 2019_07_02_003246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_083653) do
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1, null: false
     t.index ["cart_id"], name: "index_cart_products_on_cart_id"
     t.index ["product_id"], name: "index_cart_products_on_product_id"
   end
@@ -45,9 +46,11 @@ ActiveRecord::Schema.define(version: 2019_06_29_083653) do
 
   create_table "containers", force: :cascade do |t|
     t.string "name"
-    t.integer "volume"
+    t.integer "volume", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -71,7 +74,18 @@ ActiveRecord::Schema.define(version: 2019_06_29_083653) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
     t.index ["liquid_id"], name: "index_flavours_on_liquid_id"
+  end
+
+  create_table "liquid_selections", force: :cascade do |t|
+    t.bigint "flavour_id"
+    t.bigint "container_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_liquid_selections_on_container_id"
+    t.index ["flavour_id"], name: "index_liquid_selections_on_flavour_id"
   end
 
   create_table "liquids", force: :cascade do |t|
@@ -80,13 +94,14 @@ ActiveRecord::Schema.define(version: 2019_06_29_083653) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_products", force: :cascade do |t|
+  create_table "order_selections", force: :cascade do |t|
     t.bigint "order_id"
-    t.bigint "product_id"
+    t.string "selectable_type"
+    t.bigint "selectable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_products_on_order_id"
-    t.index ["product_id"], name: "index_order_products_on_product_id"
+    t.index ["order_id"], name: "index_order_selections_on_order_id"
+    t.index ["selectable_type", "selectable_id"], name: "index_order_selections_on_selectable_type_and_selectable_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -109,14 +124,27 @@ ActiveRecord::Schema.define(version: 2019_06_29_083653) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "product_containers", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "container_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_product_containers_on_container_id"
+    t.index ["product_id"], name: "index_product_containers_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.string "price"
     t.boolean "rentable"
     t.boolean "purchasable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
+    t.string "selectable_type"
+    t.bigint "selectable_id"
+    t.index ["selectable_type", "selectable_id"], name: "index_products_on_selectable_type_and_selectable_id"
   end
 
   create_table "user_exemptions", force: :cascade do |t|
@@ -142,8 +170,11 @@ ActiveRecord::Schema.define(version: 2019_06_29_083653) do
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "flavours", "liquids"
-  add_foreign_key "order_products", "orders"
-  add_foreign_key "order_products", "products"
+  add_foreign_key "liquid_selections", "containers"
+  add_foreign_key "liquid_selections", "flavours"
+  add_foreign_key "order_selections", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "product_containers", "containers"
+  add_foreign_key "product_containers", "products"
   add_foreign_key "user_exemptions", "users"
 end

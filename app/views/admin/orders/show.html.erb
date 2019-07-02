@@ -4,10 +4,10 @@
 
   <h2>Order Content</h2>
 
-  <% @order.products.each do |product| %>
+  <% @order.selections.each do |selection| %>
     <article>
-        <p><%= product.name %></p>
-        <p><%= product.price %></p>
+        <p><%= selection.name %></p>
+        <p><%= selection.price %></p>
     </article>
 <% end %>
 <h3><%="Total: #{humanized_money_with_symbol @order.total}"%></h3>

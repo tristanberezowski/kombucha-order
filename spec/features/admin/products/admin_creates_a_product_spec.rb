@@ -4,6 +4,9 @@ feature 'Admin creates a product' do
   let(:admin) { create(:admin) }
 
   context 'when signed in as an admin' do
+    let!(:flavour) { create(:flavour) }
+    let!(:container) { create(:container) }
+
     before do
       sign_in_admin
     end
@@ -11,10 +14,12 @@ feature 'Admin creates a product' do
     scenario 'from the admin products page' do
       visit admin_products_path
 
-      click_on 'New Product'
+      click_on 'New Liquid Product'
 
       fill_in 'Name', with: FFaker::Lorem.word
-      fill_in 'Price', with: '5.00'
+
+      select flavour.name, from: 'Flavour'
+      select container.name, from: 'Container'
 
       check 'Purchasable'
       check 'Rentable'

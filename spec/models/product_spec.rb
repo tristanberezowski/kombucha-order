@@ -1,29 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  it { should belong_to :selectable }
+
+  it { should have_many :product_containers }
+  it { should have_many :available_containers }
+
   it { should validate_presence_of :name }
-  it { should validate_presence_of :price_cents }
 
-  describe '#available_containers' do
-    let(:product) { create(:product) }
-    let(:result) { product.available_containers }
+  it { should accept_nested_attributes_for :selectable }
 
-    context 'when no containers are available' do
-      it 'should return an empty array' do
-        expect(result.empty?).to eq true
-      end
-    end
-
-    context 'when containers are available' do
-      let(:container) { create(:container) }
-
-      before do
-        create(:product_container, container: container)
-      end
-
-      it 'should return the containers' do
-        expect(result.count).to eq 1
-      end
-    end
-  end
+  it { should validate_presence_of :selectable_type }
+  it { should allow_value(Product::VALID_TYPES.sample).for(:selectable_type) }
+  it { should_not allow_value('Admin').for(:selectable_type) }
 end

@@ -10,6 +10,7 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def new
     @product = Product.new
+    @product.build_selectable(selectable_type)
   end
 
   def edit
@@ -17,6 +18,7 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.build_selectable(selectable_type, selectable_attributes)
 
     if @product.save
       redirect_to admin_products_path, notice: t('products.create.success')
@@ -50,7 +52,24 @@ class Admin::ProductsController < Admin::ApplicationController
       :name,
       :price,
       :rentable,
-      :purchasable
+      :purchasable,
+      :selectable_type,
+      selectable_attributes: [
+        :id,
+        :flavour_id,
+        :container_id
+      ]
+    )
+  end
+
+  def selectable_type
+    params.require(:product).fetch(:selectable_type)
+  end
+
+  def selectable_attributes
+    params.require(:product).fetch(:selectable_attributes).permit(
+      :flavour_id,
+      :container_id
     )
   end
 

@@ -7,5 +7,12 @@
     <a href="/admin/products/edit/<%= product.id %>" >Edit</a>
   <% end %>
 
-  <%= link_to 'New Product', new_admin_product_path %>
+  <%= link_to(
+    'New Liquid Product',
+    new_admin_product_path(
+      product: {
+        selectable_type: 'LiquidSelection'
+      }
+    )
+  ) %>
 </section>
