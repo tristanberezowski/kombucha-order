@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_223801) do
+ActiveRecord::Schema.define(version: 2019_07_02_232112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 2019_07_02_223801) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_products", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.integer "quantity", default: 1, null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
+  end
+
   create_table "order_selections", force: :cascade do |t|
     t.bigint "order_id"
     t.string "selectable_type"
@@ -172,6 +184,8 @@ ActiveRecord::Schema.define(version: 2019_07_02_223801) do
   add_foreign_key "flavours", "liquids"
   add_foreign_key "liquid_selections", "containers"
   add_foreign_key "liquid_selections", "flavours"
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
   add_foreign_key "order_selections", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "product_containers", "containers"

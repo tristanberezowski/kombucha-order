@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   it { should belong_to :user }
-  it { should have_many :order_selections }
-  it { should have_many :liquid_selections }
+  it { should have_many :order_products }
+  it { should have_many :products }
 
   describe "#total" do
     context "the order has no products" do
@@ -17,14 +17,14 @@ RSpec.describe Order, type: :model do
 
     context "the order has products" do
       let(:order) { create(:order) }
-      let(:selection) { create(:liquid_selection) }
+      let(:product) { create(:product) }
 
       before do
-        create(:order_selection, order: order, selectable: selection)
+        create(:order_product, order: order, product: product)
       end
 
       it "sums the products in the order" do
-        expect(order.total).to eq (selection.price)
+        expect(order.total).to eq (product.price)
       end
     end
   end

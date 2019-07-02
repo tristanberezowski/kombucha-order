@@ -1,9 +1,9 @@
 <h1> View Order </h1>
 
-<% @order.order_selections.each do |selection| %>
+<% @order.order_products.each do |product| %>
   <article class="selection">
-    <p><%= selection.name %></p>
-    <p><%= humanized_money_with_symbol selection.price %></p>
+    <p><%= product.name %></p>
+    <p><%= humanized_money_with_symbol product.price %></p>
   </article>
 <% end %>
 
