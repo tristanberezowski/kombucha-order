@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :flavour do
-    Liquid { nil }
-    name { "MyString" }
-    description { "MyString" }
+    liquid factory: :liquid
+    name { FFaker::Job.title }
+    description { FFaker::Lorem.paragraph }
   end
 end
