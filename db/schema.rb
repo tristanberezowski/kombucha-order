@@ -106,17 +106,6 @@ ActiveRecord::Schema.define(version: 2019_07_02_232112) do
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
-  create_table "order_selections", force: :cascade do |t|
-    t.bigint "order_id"
-    t.string "selectable_type"
-    t.bigint "selectable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "quantity", default: 1, null: false
-    t.index ["order_id"], name: "index_order_selections_on_order_id"
-    t.index ["selectable_type", "selectable_id"], name: "index_order_selections_on_selectable_type_and_selectable_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -186,7 +175,6 @@ ActiveRecord::Schema.define(version: 2019_07_02_232112) do
   add_foreign_key "liquid_selections", "flavours"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
-  add_foreign_key "order_selections", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "product_containers", "containers"
   add_foreign_key "product_containers", "products"
