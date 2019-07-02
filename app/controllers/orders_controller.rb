@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     @order.add_products(cart_products)
-
     if @order.save
       redirect_to @order, notice: t('orders.create.success')
     else

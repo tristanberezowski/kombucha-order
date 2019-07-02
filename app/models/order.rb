@@ -18,4 +18,14 @@ class Order < ApplicationRecord
   def email
     user.email
   end
+
+  def add_products cart_products
+    cart_products.each do |cart_product|
+      self.order_selections.new(
+        order_id: self.id,
+        selectable_type: cart_product.selectable_type,
+        selectable_id: cart_product.selectable_id
+      )
+    end
+  end
 end

@@ -1,6 +1,7 @@
 class Cart::ProductsController < ApplicationController
   def create
     @product = Product.find(params[:id])
+    (1..params[:cart_product][:quantity])
     cart_product = CartProduct.new(
       product: @product,
       cart: current_user.cart

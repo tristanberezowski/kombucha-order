@@ -3,7 +3,7 @@
 <% @order.selections.each do |selection| %>
   <article class="selection">
     <p><%= selection.name %></p>
-    <p><%= selection.price %></p>
+    <p><%= humanized_money_with_symbol selection.price %></p>
   </article>
 <% end %>
 

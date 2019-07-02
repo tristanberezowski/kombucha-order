@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :container do
-    name { FFaker::Book.title }
+    name { FFaker::Vehicle.make }
     volume { rand(1...100000) }
 
     factory :keg do

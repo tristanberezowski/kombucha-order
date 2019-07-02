@@ -13,7 +13,7 @@
         <%= simple_form_for CartProduct.new, url: cart_product_path(product) do |f| %>
           <% product.available_containers.each do |container| %>
             <fieldset class=<%= container.name.underscore.downcase %>>
-              <%= f.input :quantity %>
+              <p><%= container.name %></p><%= f.input :quantity %>
             </fieldset>
           <% end %>
           <%= f.submit 'Add to Cart' %>

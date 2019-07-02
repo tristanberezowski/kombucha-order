@@ -17,7 +17,7 @@ feature 'User creates an order' do
     within '.keg' do
       fill_in 'Quantity', with: '1'
     end
-
+    save_and_open_page
     within '.growler' do
       fill_in 'Quantity', with: '2'
     end
@@ -27,7 +27,7 @@ feature 'User creates an order' do
     within '.navigation' do
       click_on 'Cart'
     end
-
+    save_and_open_page
     click_on 'Checkout'
 
     fill_in_order_information

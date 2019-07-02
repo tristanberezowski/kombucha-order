@@ -11,9 +11,14 @@ class LiquidSelection < ApplicationRecord
     'selectables/liquid_selection/form'
   end
 
+  def name
+    "#{container.name} of #{flavour.name}"
+  end
+
   private
 
   def total_flavour_price
     flavour.price * container.volume
   end
+
 end
