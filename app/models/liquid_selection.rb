@@ -2,9 +2,10 @@ class LiquidSelection < ApplicationRecord
   belongs_to :flavour
   belongs_to :container
   has_one :liquid, through: :flavour
+  has_one :product, as: :selectable
 
   def price
-    container.price + total_flavour_price
+    product.try(:price) || container.price + total_flavour_price
   end
 
   def to_partial

@@ -16,9 +16,7 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :selectable
 
-  def price
-    selectable.price
-  end
+  monetize :price_cents
 
   def build_selectable(type, attributes={})
     if valid_type?(type)

@@ -4,6 +4,7 @@ RSpec.describe LiquidSelection, type: :model do
   it { should belong_to :flavour }
   it { should belong_to :container }
   it { should have_one :liquid }
+  it { should have_one :product }
 
   describe '#price' do
     let(:container) { create(:container, price: Money.new(500), volume: 100) }

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @selections = Product.all.map(&:selectable)
   end
 end

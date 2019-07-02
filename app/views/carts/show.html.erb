@@ -1,7 +1,3 @@
 <section class="cart-show">
-  <% @cart.items.each do |item| %>
-    <p><%= item[:quantity] %> of <%= item[:name] %>: <%= humanized_money_with_symbol item[:total] %></p>
-  <% end %>
-
   <%= link_to 'Checkout', new_order_path %>
 </section>

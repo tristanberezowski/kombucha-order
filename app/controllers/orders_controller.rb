@@ -40,6 +40,6 @@ class OrdersController < ApplicationController
   end
 
   def cart_products
-    current_user.cart.products
+    current_user.cart.cart_products
   end
 end

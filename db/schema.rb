@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_003246) do
+ActiveRecord::Schema.define(version: 2019_07_02_223801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2019_07_02_003246) do
     t.bigint "selectable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1, null: false
     t.index ["order_id"], name: "index_order_selections_on_order_id"
     t.index ["selectable_type", "selectable_id"], name: "index_order_selections_on_selectable_type_and_selectable_id"
   end
@@ -135,7 +136,6 @@ ActiveRecord::Schema.define(version: 2019_07_02_003246) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.string "price"
     t.boolean "rentable"
     t.boolean "purchasable"
     t.datetime "created_at", null: false

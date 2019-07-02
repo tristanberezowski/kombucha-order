@@ -21,10 +21,11 @@ class Order < ApplicationRecord
 
   def add_products cart_products
     cart_products.each do |cart_product|
-      self.order_selections.new(
+      self.order_selections << OrderSelection.new(
         order_id: self.id,
-        selectable_type: cart_product.selectable_type,
-        selectable_id: cart_product.selectable_id
+        selectable_type: cart_product.product.selectable_type,
+        selectable_id: cart_product.product.selectable_id,
+        quantity: cart_product.quantity,
       )
     end
   end

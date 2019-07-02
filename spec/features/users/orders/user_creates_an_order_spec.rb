@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'User creates an order' do
   let(:keg) { create(:keg) }
   let(:growler) { create(:growler) }
-  let(:product) { create(:product, price: Money.new(500)) }
+  let(:selection) { create(:liquid_selection, container: growler) }
+  let(:product) { create(:product, price: Money.new(500), selectable: selection) }
 
   before do
     create(:product_container, product: product, container: keg)
@@ -14,20 +15,15 @@ feature 'User creates an order' do
   scenario 'by saving it for later' do
     visit products_path
 
-    within '.keg' do
-      fill_in 'Quantity', with: '1'
-    end
-    save_and_open_page
-    within '.growler' do
+    within ".product-#{product.id}" do
       fill_in 'Quantity', with: '2'
+      click_on 'Add to Cart'
     end
-
-    click_on 'Add to Cart'
 
     within '.navigation' do
       click_on 'Cart'
     end
-    save_and_open_page
+
     click_on 'Checkout'
 
     fill_in_order_information
@@ -36,7 +32,6 @@ feature 'User creates an order' do
 
     expect(page).to have_content t('orders.create.success')
     expect(page).to have_content '2x Growler'
-    expect(page).to have_content '1x Keg'
     expect(page).to have_content total
   end
 

@@ -1,24 +1,21 @@
 <section class="product-index">
   <h1>Products</h1>
 
-  <% @products.each do |product| %>
-    <article>
-      <header>
-        <h1><%= product.name %></h1>
-      </header>
+  <section class="product-flavours">
+    <% @selections.each do |selectable| %>
+      <article class=<%= "product-#{selectable.product.id}" %>>
+        <header>
+          <h1><%= selectable.name %></h1>
+        </header>
 
-      <p><%= humanized_money_with_symbol product.price %></p>
-
-      <section class="product-links">
-        <%= simple_form_for CartProduct.new, url: cart_product_path(product) do |f| %>
-          <% product.available_containers.each do |container| %>
-            <fieldset class=<%= container.name.underscore.downcase %>>
-              <p><%= container.name %></p><%= f.input :quantity %>
-            </fieldset>
+        <section class="product-links">
+          <%= simple_form_for CartProduct.new, url: cart_product_path(selectable.product) do |f| %>
+            <p><%= humanized_money_with_symbol selectable.price %></p>
+            <%= f.input :quantity %>
+            <%= f.submit 'Add to Cart' %>
           <% end %>
-          <%= f.submit 'Add to Cart' %>
-        <% end %>
-      </section>
-    </article>
-  <% end %>
+        </section>
+      </article>
+    <% end %>
+  </section>
 </section>
