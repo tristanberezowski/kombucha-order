@@ -4,7 +4,11 @@ feature 'User creates an order' do
   let(:keg) { create(:keg) }
   let(:growler) { create(:growler) }
   let(:selection) { create(:liquid_selection, container: growler) }
+  let(:second_selection) { create(:liquid_selection, container: keg) }
   let(:product) { create(:product, price: Money.new(500), selectable: selection) }
+  let!(:second_product) { 
+    create(:product, price: Money.new(500), selectable: second_selection) 
+  }
 
   before do
     create(:product_container, product: product, container: keg)
@@ -17,6 +21,11 @@ feature 'User creates an order' do
 
     within ".product-#{product.id}" do
       fill_in 'Quantity', with: '2'
+      click_on 'Add to Cart'
+    end
+
+    within ".product-#{second_product.id}" do
+      fill_in 'Quantity', with: '3'
       click_on 'Add to Cart'
     end
 
@@ -36,7 +45,7 @@ feature 'User creates an order' do
   end
 
   def total
-    '$5.00'
+    '$10.00'
   end
 
   def fill_in_order_information
