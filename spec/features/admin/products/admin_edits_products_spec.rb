@@ -15,7 +15,8 @@ feature 'Admin updates products' do
 
       click_link 'Edit'
 
-      fill_in 'Name', with: 'Kombucha'
+      fill_in 'Name', with: 'Kombucha 1L Growler'
+      fill_in 'Price', with: 42.50
 
       click_on 'Update Product'
 

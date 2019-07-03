@@ -17,7 +17,7 @@ feature 'Admin creates a product' do
       click_on 'New Liquid Product'
 
       fill_in 'Name', with: FFaker::Lorem.word
-
+      fill_in 'Price', with: 5
       select flavour.name, from: 'Flavour'
       select container.name, from: 'Container'
 
