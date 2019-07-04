@@ -1,9 +1,19 @@
 <section class="admin-orders-index">
+
+  <h1>Order Summary</h1>
+
+  <% @flavours.each do |flavour| %>
+    <p> <%= flavour.total_volume_needed(@active_orders) %> </p>
+  <% end %>
+
   <h1>View Orders</h1>
 
   <% @orders.each do |order| %>
     <p>Name: <%= order.shipping_name %></p>
     <p>Created at: <%= order.created_at %></p>
+    <% order.products.each do |product| %>
+      <p><%= product.name %></p>
+    <% end %>
     <a class="show-order" href="/admin/orders/<%= order.id %>">View order</a>
     <br>
   <% end %>
