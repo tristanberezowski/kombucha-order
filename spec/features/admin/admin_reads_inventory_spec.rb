@@ -14,13 +14,8 @@ feature 'Admin views production/order requirements' do
       sign_in_admin
     end
 
-    scenario 'from the admin orders page' do
-
+    scenario 'and views the orders' do
       visit admin_orders_path
-
-      expect(Order.all.length).to eq(3)
-      
     end
   end
-  
 end
