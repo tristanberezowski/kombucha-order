@@ -14,5 +14,6 @@ FactoryBot.define do
     shipping_postal { FFaker::AddressUS.zip_code }
     shipping_country { FFaker::Address.country }
     note { FFaker::Lorem.paragraph }
+    delivery_date { DateTime.new(2020, 12, 8, 10, 19) }
   end
 end

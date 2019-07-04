@@ -11,6 +11,7 @@
   <% @orders.each do |order| %>
     <p>Name: <%= order.shipping_name %></p>
     <p>Created at: <%= order.created_at %></p>
+    <p>Delivery Date: <%= order.delivery_date %></p>
     <% order.products.each do |product| %>
       <p><%= product.name %></p>
     <% end %>
