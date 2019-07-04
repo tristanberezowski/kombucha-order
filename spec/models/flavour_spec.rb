@@ -9,7 +9,8 @@ RSpec.describe Flavour, type: :model do
     let(:flavour) { create(:flavour) }
     let(:orders) { create_list(:order, rand(1..5) ) }
     let(:container) { create(:container, volume: 500) }
-    let(:expected_volume) { container.volume * orders.count }
+    let(:products_count) { orders.map(&:products).flatten.count }
+    let(:expected_volume) { container.volume * products_count }
     let(:selection) { create(:liquid_selection, container: container, flavour: flavour) }
     let(:product) { create(:product, selectable: selection) }
 
@@ -19,7 +20,7 @@ RSpec.describe Flavour, type: :model do
 
     before do
       orders.each do |order|
-        create( :order_product, order: order, product: product )
+        create_list(:order_product, 2, order: order, product: product )
       end
     end
 

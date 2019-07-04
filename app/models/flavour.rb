@@ -6,29 +6,30 @@ class Flavour < ApplicationRecord
   monetize :price_cents
 
   def total_volume_needed(orders)
-    volumes = []
-    orders.each do |order|
-      volumes << total_volume_needed_single_order(order)
-    end
+    volumes = total_volume_needed_for_orders(orders)
     total = volumes.flatten.inject(&:+)
+    return total
   end
 
   private
 
-  def volume_for(product)
-    if (product.selectable.flavour == self)
-      return product.selectable.container.volume
+  def total_volume_needed_for_orders(orders)
+    orders.map do |order|
+      total_volume_needed_single_order(order)
+    end
+  end
+
+  def volume_for(selectable)
+    if (selectable.flavour == self)
+      return selectable.container.volume
     else
       return 0
     end
   end
 
   def total_volume_needed_single_order(order)
-    volumes = []
-    order.products.each do |product|
-      volumes << volume_for(product)
+    order.products.map do |product|
+      volume_for(product.selectable)
     end
-    volumes
   end
-
 end
