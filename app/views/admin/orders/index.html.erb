@@ -3,7 +3,8 @@
   <h1>Order Summary</h1>
 
   <% @flavours.each do |flavour| %>
-    <p> <%= flavour.total_volume_needed(@active_orders) %> </p>
+    <p><strong>Name: </strong> <%= flavour.name %></p>
+    <p> <%= flavour.total_volume_needed(@undelivered_orders) %> </p>
   <% end %>
 
   <h1>View Orders</h1>

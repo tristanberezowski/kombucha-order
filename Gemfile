@@ -27,6 +27,7 @@ gem "devise"
 gem "ffaker"
 gem 'money-rails', '~>1.12'
 gem 'country_select'
+gem 'aasm'
 
 group :development do
   gem "listen"
