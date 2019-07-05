@@ -12,6 +12,8 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 module App
   class Application < Rails::Application
+    config.time_zone = "Pacific Time (US & Canada)"
+    config.active_record.default_timezone = "Pacific Time (US & Canada)"
     config.assets.quiet = true
     config.generators do |generate|
       generate.helper false
