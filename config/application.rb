@@ -12,6 +12,7 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 module App
   class Application < Rails::Application
+    config.autoload_paths << Rails.root.join('app/services')
     config.time_zone = "Pacific Time (US & Canada)"
     config.active_record.default_timezone = "Pacific Time (US & Canada)"
     config.assets.quiet = true

@@ -9,6 +9,7 @@ feature 'User creates an order' do
   let!(:second_product) { 
     create(:product, price: Money.new(500), selectable: second_selection) 
   }
+  let(:city) { Order::VALID_CITIES.sample }
 
   before do
     create(:product_container, product: product, container: keg)
@@ -41,11 +42,16 @@ feature 'User creates an order' do
 
     expect(page).to have_content t('orders.create.success')
     expect(page).to have_content '2x Growler'
+    expect(page).to have_content delivery_date_for(Order.last)
     expect(page).to have_content total
   end
 
   def total
     '$10.00'
+  end
+
+  def delivery_date_for(order)
+    order.make_delivery_date_next_possible(city).strftime("Scheduled for delivery on %m/%d/%Y")
   end
 
   def fill_in_order_information
@@ -69,7 +75,7 @@ feature 'User creates an order' do
     within('.shipping-information') do
       fill_in 'Name', with: FFaker::Name.name
       fill_in 'Address', with: FFaker::Address.street_address
-      fill_in 'City', with: FFaker::Address.city
+      fill_in 'City', with: city
       fill_in 'State/Province', with: FFaker::AddressUS.state
       fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
       select 'Canada', from: 'Country'

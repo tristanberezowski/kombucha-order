@@ -28,17 +28,52 @@ RSpec.describe Order, type: :model do
     context "the order is placed from Langley or Surrey" do
       let(:order) { create(:order, shipping_city: "Langley") }
       let(:expected_date) { Time.current.noon + 7.days }
-      let(:result) { order.make_delivery_date_next_possible("Langley")}
-      it "should return the next Wednesday" do
-        expect(result).to eq( expected_date )
+      let(:result) { order.make_delivery_date_next_possible(city)}
+
+      context 'when the city is Langley' do
+        let(:city) { 'Langley' }
+
+        it "should return the next Wednesday" do
+          expect(result).to eq(expected_date)
+        end
+      end
+
+      context 'when the city is Surrey' do
+        let(:city) { 'Surrey' }
+
+        it "should return the next Wednesday" do
+          expect(result).to eq(expected_date)
+        end
       end
     end
+
     context "the order is placed from Coquitlam, Port Moody, or Maple Ridge" do
-      let(:order) { create(:order, shipping_city: "Coquitlam") }
+      let(:order) { create(:order, shipping_city: city) }
       let(:expected_date) { Time.current.noon + 6.days }
-      let(:result) { order.make_delivery_date_next_possible("Coquitlam")}
-      it "should return the next Wednesday" do
-        expect(result).to eq( expected_date )
+      let(:result) { order.make_delivery_date_next_possible(city)}
+
+      context 'when the city is Coquitlam' do
+        let(:city) { "Coquitlam" }
+
+        it "should return the next Wednesday" do
+          expect(result).to eq(expected_date)
+        end
+      end
+
+      context 'when the city is Port Moody' do
+        let(:city) { "Port Moody" }
+
+        it "should return the next Wednesday" do
+          expect(result).to eq(expected_date)
+        end
+      end
+
+      context 'when the city is Maple Ridge' do
+        let(:city) { "Maple Ridge" }
+
+        it "should return the next Wednesday" do
+          expect(result).to eq(expected_date)
+        end
       end
     end
   end
