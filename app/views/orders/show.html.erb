@@ -8,3 +8,5 @@
 <% end %>
 
 <h3><%="Total: #{humanized_money_with_symbol @order.total}"%></h3>
+
+<p><%= @order.delivery_date.strftime("Scheduled for delivery on %m/%d/%Y") %></p>

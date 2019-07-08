@@ -23,14 +23,14 @@ class Order < ApplicationRecord
     end
   end
 
-  VALID_CITIES = %w(
-    Vancouver
-    Langley
-    Surrey
-    Coquitlam
-    Port Moody
-    Maple Ridge
-  )
+  VALID_CITIES = [
+    'Vancouver',
+    'Langley',
+    'Surrey',
+    'Coquitlam',
+    'Port Moody',
+    'Maple Ridge',
+  ]
 
   VALID_CITY_CLASSES = %w(
     Vancouver
@@ -41,6 +41,9 @@ class Order < ApplicationRecord
     MapleRidge
   )
 
+  def delivery_date
+    make_delivery_date_next_possible(self.shipping_city)
+  end
 
   def make_delivery_date_next_possible(city)
     formatted_city = city.gsub(/ /, '')

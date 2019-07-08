@@ -33,7 +33,7 @@ RSpec.describe Order, type: :model do
       context 'when the city is Langley' do
         let(:city) { 'Langley' }
 
-        it "should return the next Wednesday" do
+        it "should return the next Friday" do
           expect(result).to eq(expected_date)
         end
       end
@@ -41,7 +41,7 @@ RSpec.describe Order, type: :model do
       context 'when the city is Surrey' do
         let(:city) { 'Surrey' }
 
-        it "should return the next Wednesday" do
+        it "should return the next Friday" do
           expect(result).to eq(expected_date)
         end
       end
@@ -55,7 +55,7 @@ RSpec.describe Order, type: :model do
       context 'when the city is Coquitlam' do
         let(:city) { "Coquitlam" }
 
-        it "should return the next Wednesday" do
+        it "should return the next Thursday" do
           expect(result).to eq(expected_date)
         end
       end
@@ -63,7 +63,7 @@ RSpec.describe Order, type: :model do
       context 'when the city is Port Moody' do
         let(:city) { "Port Moody" }
 
-        it "should return the next Wednesday" do
+        it "should return the next Thursday" do
           expect(result).to eq(expected_date)
         end
       end
@@ -71,7 +71,7 @@ RSpec.describe Order, type: :model do
       context 'when the city is Maple Ridge' do
         let(:city) { "Maple Ridge" }
 
-        it "should return the next Wednesday" do
+        it "should return the next Thursday" do
           expect(result).to eq(expected_date)
         end
       end

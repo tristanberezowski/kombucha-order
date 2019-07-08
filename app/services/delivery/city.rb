@@ -24,7 +24,7 @@ module Delivery
       end
 
       def delivery_fridays_only
-        if wednesday_after_noon? || thursday_or_friday?
+        if wednesday_after_noon? || thursday?
           return next_weekday("friday") + 1.week # Delivery is next friday
         else
           return next_weekday("friday") # Delivery is this friday
@@ -73,6 +73,10 @@ module Delivery
 
       def thursday_or_friday?
         Time.current.thursday? || Time.current.friday?
+      end
+
+      def thursday?
+        Time.current.thursday?
       end
 
       def before_noon?
