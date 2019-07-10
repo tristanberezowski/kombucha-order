@@ -3,9 +3,6 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   it { should belong_to :selectable }
 
-  it { should have_many :product_containers }
-  it { should have_many :available_containers }
-
   it { should validate_presence_of :name }
 
   it { should accept_nested_attributes_for :selectable }

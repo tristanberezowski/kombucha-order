@@ -3,17 +3,15 @@ require 'rails_helper'
 feature 'User creates an order' do
   let(:keg) { create(:keg) }
   let(:growler) { create(:growler) }
-  let(:selection) { create(:liquid_selection, container: growler) }
-  let(:second_selection) { create(:liquid_selection, container: keg) }
-  let(:product) { create(:product, price: Money.new(500), selectable: selection) }
+  let!(:selection) { create(:liquid_selection, container: growler) }
+  let!(:second_selection) { create(:liquid_selection, container: keg) }
+  let!(:product) { create(:product, price: Money.new(500), selectable: selection) }
   let!(:second_product) { 
     create(:product, price: Money.new(500), selectable: second_selection) 
   }
   let(:city) { Order::VALID_CITIES.sample }
 
   before do
-    create(:product_container, product: product, container: keg)
-    create(:product_container, product: product, container: growler)
     sign_in_user
   end
 

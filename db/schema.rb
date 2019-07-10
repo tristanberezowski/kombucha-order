@@ -139,15 +139,6 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
-  create_table "product_containers", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "container_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["container_id"], name: "index_product_containers_on_container_id"
-    t.index ["product_id"], name: "index_product_containers_on_product_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.boolean "rentable"
@@ -190,7 +181,5 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
-  add_foreign_key "product_containers", "containers"
-  add_foreign_key "product_containers", "products"
   add_foreign_key "user_exemptions", "users"
 end

@@ -1,12 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :selectable, polymorphic: true
 
-  has_many :product_containers
-  has_many :available_containers,
-    through: :product_containers,
-    class_name: 'Container',
-    source: :container
-
   VALID_TYPES = %w(
     LiquidSelection
   )
