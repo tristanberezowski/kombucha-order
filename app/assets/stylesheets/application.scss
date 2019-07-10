@@ -6,3 +6,12 @@
 @import "neat";
 
 @import "base/base";
+
+// Resources
+@import "navigation";
+
+main.main-content {
+  display: block;
+  max-width: $large-screen;
+  margin: 0 auto;
+}

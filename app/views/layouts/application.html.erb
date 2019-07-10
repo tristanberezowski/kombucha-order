@@ -16,7 +16,9 @@
 
   <%= render "shared/navigation" %>
   <%= render "flashes" -%>
-  <%= yield %>
+  <main class="main-content">
+    <%= yield %>
+  </main>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
 </body>

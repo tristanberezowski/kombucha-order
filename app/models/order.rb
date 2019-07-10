@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
   has_one :payment
 
-  aasm column: :delivery_status do
+  aasm :delivery_status, column: :delivery_status do
     state :undelivered, initial: true
     state :delivered
 
@@ -15,7 +15,7 @@ class Order < ApplicationRecord
     end
   end
 
-  aasm column: :payment_status do
+  aasm :payment_status, column: :payment_status do
     state :unpaid, initial: true
     state :paid
 
