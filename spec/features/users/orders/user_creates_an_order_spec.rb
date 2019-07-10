@@ -20,12 +20,12 @@ feature 'User creates an order' do
   scenario 'by saving it for later' do
     visit products_path
 
-    within ".product-#{product.id}" do
+    within "#product-#{product.id}" do
       fill_in 'Quantity', with: '2'
       click_on 'Add to Cart'
     end
 
-    within ".product-#{second_product.id}" do
+    within "#product-#{second_product.id}" do
       fill_in 'Quantity', with: '3'
       click_on 'Add to Cart'
     end

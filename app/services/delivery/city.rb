@@ -92,7 +92,7 @@ module Delivery
       end
 
       def today
-        Date.today
+        Date.current
       end
     end
   end
