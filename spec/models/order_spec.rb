@@ -6,10 +6,11 @@ RSpec.describe Order, type: :model do
   it { should have_many :products }
 
   describe "#make_delivery_date_next_possible" do
+    let(:time) { Time.zone.parse('2019-07-05 16:00:00') }
 
     before do
       Timecop.safe_mode = false
-      Timecop.freeze(Time.zone.parse('2019-07-05 16:00:00'))
+      Timecop.freeze(time)
     end
 
     after do

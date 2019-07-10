@@ -24,7 +24,7 @@ module Delivery
       end
 
       def delivery_fridays_only
-        if wednesday_after_noon? || thursday?
+        if wednesday_after_noon? || thursday_or_friday?
           return next_weekday("friday") + 1.week # Delivery is next friday
         else
           return next_weekday("friday") # Delivery is this friday
@@ -33,58 +33,66 @@ module Delivery
 
       def next_weekday(weekday)
         if weekday.capitalize == current_weekday
-          return Date.today
+          return today
         else
-          return (Date.today + 1.week).beginning_of_week(weekday.to_sym)
+          return (today + 1.week).beginning_of_week(weekday.to_sym)
         end
       end
 
       def current_weekday
-        Date.today.strftime('%A')
+        today.strftime('%A')
       end
 
       def tuesday_after_noon?
-        Time.current.tuesday? == 0 && after_noon?
+        time.tuesday? == 0 && after_noon?
       end
 
       def wednesday_or_thursday?
-        Time.current.wednesday? || Time.current.thursday?
+        time.wednesday? || time.thursday?
       end
 
       def wednesday_before_noon?
-        Time.current.wednesday? && before_noon?
+        time.wednesday? && before_noon?
       end
 
       def tuesday_or_monday_after_noon?
-        Time.current.tuesday? || monday_after_noon?
+        time.tuesday? || monday_after_noon?
       end
 
       def monday_after_noon?
-        Time.current.monday? && after_noon?
+        time.monday? && after_noon?
       end
 
       def wednesday_after_noon?
-        Time.current.wednesday? && after_noon?
+        time.wednesday? && after_noon?
       end
 
       def wednesday_before_noon?
-        Time.current.wednesday? && before_noon?
+        time.wednesday? && before_noon?
       end
 
       def thursday_or_friday?
-        Time.current.thursday? || Time.current.friday?
+        time.thursday? || time.friday?
       end
 
       def thursday?
-        Time.current.thursday?
+        time.thursday?
       end
 
       def before_noon?
-        Time.current <= Time.current.noon
+        time <= time.noon
       end
 
       def after_noon?
-        Time.current > Time.current.noon
+        time > time.noon
+      end
+
+      def time
+        Time.current
+      end
+
+      def today
+        Date.today
       end
     end
   end
