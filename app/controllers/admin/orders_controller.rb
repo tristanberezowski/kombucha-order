@@ -7,5 +7,8 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    if @order.payment == nil
+      Payment.new(order: @order)
+    end
   end
 end

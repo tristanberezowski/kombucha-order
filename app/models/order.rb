@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_products
   has_many :products, through: :order_products
+  has_one :payment
 
   aasm column: :delivery_status do
     state :undelivered, initial: true
@@ -19,7 +20,7 @@ class Order < ApplicationRecord
     state :paid
 
     event :pay do
-      transitions from: :unpaid, to: :paid
+      transitions from: :unpaid, to: :paid, guard: :has_payment?
     end
   end
 
@@ -40,6 +41,10 @@ class Order < ApplicationRecord
     PortMoody
     MapleRidge
   )
+
+  def payment_partial_path
+    self.paid? ? "payment_details" : "unpaid_form"
+  end
 
   def delivery_date
     make_delivery_date_next_possible(self.shipping_city)
@@ -77,6 +82,9 @@ class Order < ApplicationRecord
 
   private
 
+  def has_payment?
+    self.payment
+  end
 
   def product_prices
     products.map(&:price)

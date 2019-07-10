@@ -1,4 +1,7 @@
 en:
   orders:
+    payment:
+      create:
+        success: 'Payment information created, order updated.'
     create:
       success: 'Order created successfully'
