@@ -4,10 +4,12 @@
   </section>
 
   <section class="navigation-links">
+    <%= link_to 'Home', products_path %>
+    |
     <% if admin_signed_in? %>
-      <%= render "admin_links" %>
+      <%= render "shared/admin_links" %>
     <% elsif user_signed_in? %>
-      <%= render "user_links" %>
+      <%= render "shared/user_links" %>
     <% else %>
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
       |

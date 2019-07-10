@@ -1,9 +1,9 @@
 <section class="product-index">
   <h1>Products</h1>
 
-  <section class="product-flavours">
+  <section class="product-list">
     <% @selections.each do |selectable| %>
-      <article class=<%= "product-#{selectable.product.id}" %>>
+      <article class="product" id=<%= "product-#{selectable.product.id}" %>>
         <header>
           <h1><%= selectable.name %></h1>
         </header>

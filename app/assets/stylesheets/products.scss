@@ -1,0 +1,16 @@
+section.product-index {
+}
+
+section.product-list {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+article.product {
+  padding: $small-spacing;
+  margin: $small-spacing;
+  border: $base-border;
+  flex: 1;
+}

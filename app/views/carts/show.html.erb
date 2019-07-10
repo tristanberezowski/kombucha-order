@@ -1,3 +1,29 @@
 <section class="cart-show">
-  <%= link_to 'Checkout', new_order_path %>
+  <h1>Your Cart</h1>
+  <table class="products-table">
+    <thead>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </thead>
+
+    <tbody>
+      <% @cart.cart_products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.quantity %></td>
+          <td><%= humanized_money_with_symbol product.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @cart.total_price %></td>
+    </tfoot>
+  </table>
+  <%= link_to 'Checkout', new_order_path, class: 'primary-button' %>
+  <%= link_to 'Back', :back, class: 'secondary-button' %>
 </section>

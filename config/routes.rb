@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    root to: "home#index"
+    root to: "products#index"
 
     devise_for :admins
     devise_for :users, controllers: {
