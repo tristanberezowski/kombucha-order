@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :payment do
-    order { nil }
-    payee { "MyString" }
-    contact_information { "MyString" }
-    payment_method { "MyString" }
-    payment_date { "2019-07-09" }
+    order { create(:order) }
+    payee { FFaker::Name.name }
+    contact_information { FFaker::Internet.email }
+    payment_method { ["Credit Card", "Cheque", "Etransfer"].sample }
+    payment_date { Date.current - rand(1..100).days }
   end
 end
