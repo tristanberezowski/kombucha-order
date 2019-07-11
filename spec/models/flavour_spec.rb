@@ -5,6 +5,20 @@ RSpec.describe Flavour, type: :model do
   it { should validate_presence_of :description }
   it { should belong_to :liquid }
 
+  describe "products" do
+    let!(:flavour) { create(:flavour) }
+    let!(:selection) { create(:liquid_selection, flavour: flavour) }
+    let!(:product1) { create(:product) }
+    let!(:product2) { create(:product, selectable: selection) }
+    let(:result) { flavour.products }
+
+    it "Should return products of correct flavour" do
+      expect(result.length).to eq(1)
+      expect(result[0]).to eq(product2)
+    end
+
+  end
+
   describe "#total_volume_needed" do
     let(:flavour) { create(:flavour) }
     let(:orders) { create_list(:order, rand(1..5) ) }

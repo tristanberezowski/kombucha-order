@@ -11,6 +11,11 @@ class Flavour < ApplicationRecord
     return total
   end
 
+  def products
+    selections = LiquidSelection.where(flavour: self)
+    selections.map(&:product)
+  end
+
   private
 
   def total_volume_needed_for_orders(orders)

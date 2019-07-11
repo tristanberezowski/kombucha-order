@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :liquid do
-    name { "MyString" }
+    name { ["Kombucha", "Sparkling Water"].sample }
   end
 end

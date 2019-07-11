@@ -18,6 +18,10 @@ class Product < ApplicationRecord
     end
   end
 
+  def container
+    self.selectable.container
+  end
+
   private
 
   def valid_type?(type)

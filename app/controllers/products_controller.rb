@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
   def index
-    @selections = Product.all.map(&:selectable)
+    @products = Product.all
+    @selections = @products.map(&:selectable)
+    @liquids = @selections.map(&:liquid).uniq
+    @flavours = @selections.map(&:flavour).uniq
   end
 end
