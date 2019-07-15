@@ -2,3 +2,5 @@ en:
   invites:
     create:
       success: 'Invite successfully sent.'
+    token:
+      invalid: 'Your invite is invalid. Please contact an admin to resend the invite.'

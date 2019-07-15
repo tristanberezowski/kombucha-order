@@ -1,0 +1,9 @@
+<section class="invite-show">
+  <h1>Invite</h1>
+  <%= render(
+    'users/registrations/form',
+    resource: User.new,
+    resource_name: 'user',
+    token: @invite.try(:token)
+  ) %>
+</section>

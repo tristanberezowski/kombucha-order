@@ -11,7 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    if valid_invite?
+      super
+    else
+      redirect_to root_path, notice: t('invites.token.invalid')
+    end
   end
 
   # GET /resource/edit
@@ -38,12 +42,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  #def configure_sign_up_params
+    #devise_parameter_sanitizer.permit(:token)
+  #end
+
+  def sign_up_params
+    params.require(:user).permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :token
+    )
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
@@ -59,4 +72,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def valid_invite?
+    Invite.find_by(token: token)
+  end
+
+  def token
+    params.fetch(:token)
+  end
 end
