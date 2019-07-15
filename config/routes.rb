@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'invites/new'
+  end
+  namespace :admin do
     get 'dashboard/index'
   end
     root to: "products#index"
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
+      resources :invites, only: [:create, :new]
       resource :dashboard, only: [ :index ]
       resources :products
       resources :liquids, only: [

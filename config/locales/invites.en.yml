@@ -1,0 +1,4 @@
+en:
+  invites:
+    create:
+      success: 'Invite successfully sent.'
