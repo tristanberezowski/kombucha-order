@@ -66,7 +66,6 @@ mojito = kombucha.flavours.create!(
   name: "Mojito", 
   description: "Aside from its unbelievably bright bold colour, the balance of peach & apricot and subtle citrus finish really shine!"
 )
-
 original = water.flavours.create!(
   name: "Original",
   description: "Our original sparkling water crisp flavour!"
