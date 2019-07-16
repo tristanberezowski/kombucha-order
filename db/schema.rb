@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_222428) do
+ActiveRecord::Schema.define(version: 2019_07_16_222345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(version: 2019_07_15_222428) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "delivery_exemptions", force: :cascade do |t|
+    t.integer "fee_cents", default: 0, null: false
+    t.string "fee_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "flavours", force: :cascade do |t|
     t.bigint "liquid_id"
     t.string "name"
@@ -77,6 +84,16 @@ ActiveRecord::Schema.define(version: 2019_07_15_222428) do
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
     t.index ["liquid_id"], name: "index_flavours_on_liquid_id"
+  end
+
+  create_table "invite_exemptions", force: :cascade do |t|
+    t.bigint "invite_id"
+    t.string "exemptable_type"
+    t.bigint "exemptable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exemptable_type", "exemptable_id"], name: "index_invite_exemptions_on_exemptable_type_and_exemptable_id"
+    t.index ["invite_id"], name: "index_invite_exemptions_on_invite_id"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -184,6 +201,7 @@ ActiveRecord::Schema.define(version: 2019_07_15_222428) do
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "flavours", "liquids"
+  add_foreign_key "invite_exemptions", "invites"
   add_foreign_key "invites", "admins"
   add_foreign_key "liquid_selections", "containers"
   add_foreign_key "liquid_selections", "flavours"

@@ -1,6 +1,18 @@
 <%= simple_form_for [:admin, invite] do |f| %>
   <section class="form-inputs">
     <%= f.input :email %>
+
+    <section>
+      <%= f.simple_fields_for :delivery_exemptions do |ff| %>
+        <%= render 'delivery_exemption_fields', f: ff %>
+      <% end %>
+
+      <%= link_to_add_association(
+        'Add Delivery exemption',
+        f,
+        :delivery_exemptions
+      ) %>
+    </section>
   </section>
 
   <section class="form-links">

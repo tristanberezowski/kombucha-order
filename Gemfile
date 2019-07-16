@@ -28,6 +28,7 @@ gem "ffaker"
 gem 'money-rails', '~>1.12'
 gem 'country_select'
 gem 'aasm'
+gem 'cocoon'
 
 group :development do
   gem "listen"
