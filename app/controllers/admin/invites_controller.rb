@@ -1,4 +1,9 @@
 class Admin::InvitesController < Admin::ApplicationController
+  
+  def index
+    @invites = Invite.all
+  end
+  
   def new
     @invite = Invite.new
     @invite.delivery_exemptions.build

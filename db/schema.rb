@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_16_222345) do
+ActiveRecord::Schema.define(version: 2019_07_17_133700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,9 @@ ActiveRecord::Schema.define(version: 2019_07_16_222345) do
     t.float "delivery_fee"
     t.float "order_minimum"
     t.bigint "user_id"
+    t.string "exemptable_type"
+    t.bigint "exemptable_id"
+    t.index ["exemptable_type", "exemptable_id"], name: "index_user_exemptions_on_exemptable_type_and_exemptable_id"
     t.index ["user_id"], name: "index_user_exemptions_on_user_id"
   end
 
