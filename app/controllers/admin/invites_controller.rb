@@ -1,12 +1,12 @@
 class Admin::InvitesController < Admin::ApplicationController
   def new
     @invite = Invite.new
+    @invite.delivery_exemptions.build
   end
 
   def create
     @invite = Invite.new(invite_params)
     @invite.admin = current_admin
-
     if @invite.save
       redirect_to admin_users_path, notice: t('invites.create.success')
     else
@@ -18,7 +18,11 @@ class Admin::InvitesController < Admin::ApplicationController
 
   def invite_params
     params.require(:invite).permit(
-      :email
+      :email,
+      delivery_exemptions_attributes: [
+        :id,
+        :fee
+      ]
     )
   end
 end
