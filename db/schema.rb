@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_17_133700) do
+ActiveRecord::Schema.define(version: 2019_07_17_213716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,7 +102,10 @@ ActiveRecord::Schema.define(version: 2019_07_17_133700) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
+    t.bigint "user_id"
     t.index ["admin_id"], name: "index_invites_on_admin_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "liquid_selections", force: :cascade do |t|
@@ -206,6 +209,7 @@ ActiveRecord::Schema.define(version: 2019_07_17_133700) do
   add_foreign_key "flavours", "liquids"
   add_foreign_key "invite_exemptions", "invites"
   add_foreign_key "invites", "admins"
+  add_foreign_key "invites", "users"
   add_foreign_key "liquid_selections", "containers"
   add_foreign_key "liquid_selections", "flavours"
   add_foreign_key "order_products", "orders"

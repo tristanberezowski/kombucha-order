@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Invite, type: :model do
   it { should belong_to :admin }
+  it { should belong_to(:user).optional }
 
   it { should have_many :invite_exemptions }
   it { should have_many :delivery_exemptions }
