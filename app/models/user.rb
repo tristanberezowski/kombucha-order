@@ -15,7 +15,11 @@ class User < ApplicationRecord
     Cart.find_or_create_by!(user: self)
   end
 
-  def delivery_fee
-    self.delivery_exemptions.first.fee
+  def delivery_exemption
+    delivery_exemptions.first
+  end
+
+  def exemptions
+    user_exemptions
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User accepts an invite' do
   let(:invite) { create(:delivered_invite) }
-  let(:delivery_exemption) { create(:delivery_exemption) }
+  let(:delivery_exemption) { create(:delivery_exemption, fee: Money.new(500)) }
   let(:email) { FFaker::Internet.email}
   
   before do
@@ -34,8 +34,10 @@ feature 'User accepts an invite' do
 
     fill_in_user
     click_on 'Accept Invite'
-    current_user = User.find_by(email: email)
-    expect(current_user.delivery_fee).to eq(delivery_exemption.fee)
+    expect(page).to have_content t('devise.registrations.signed_up')
+    
+    visit new_order_path
+    expect(page).to have_content("$5.00")
 
   end
 

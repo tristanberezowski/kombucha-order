@@ -2,4 +2,6 @@
   <h1>Review your order</h1>
 
   <%= render "form", order: @order %>
+
+  <p> Delivery Fee: <%= humanized_money_with_symbol @order.delivery_fee %> </p>
 </section>
