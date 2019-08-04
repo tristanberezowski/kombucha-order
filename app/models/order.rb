@@ -42,7 +42,7 @@ class Order < ApplicationRecord
     MapleRidge
   )
 
-  DEFAULT_DELIVERY_FEE = Money.new(500)
+  DEFAULT_DELIVERY_FEE = Money.new(700)
 
   def delivery_fee
     user.delivery_exemption ? user.delivery_exemption.fee : DEFAULT_DELIVERY_FEE

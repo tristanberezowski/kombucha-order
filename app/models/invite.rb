@@ -9,6 +9,10 @@ class Invite < ApplicationRecord
     through: :invite_exemptions,
     source: :exemptable,
     source_type: 'DeliveryExemption'
+  has_many :product_exemptions,
+    through: :invite_exemptions,
+    source: :exemptable,
+    source_type: 'ProductExemption'
 
   validates_presence_of :email
 
@@ -38,6 +42,7 @@ class Invite < ApplicationRecord
 
   def create_user_exemptions
     user.delivery_exemptions = delivery_exemptions
+    user.product_exemptions = product_exemptions
   end
 
   def generate_token

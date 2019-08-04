@@ -21,7 +21,7 @@
                     <article id="product-<%= product.id %>" class="product container-<%= product.container.id %>">
                       <%= simple_form_for CartProduct.new, url: cart_product_path(product) do |f| %>
                         <p><strong><%= product.container.name %></strong></p>
-                        <p><%= humanized_money_with_symbol product.price%></p>
+                        <p><%= humanized_money_with_symbol product.price_for(current_user) %></p>
                         <%= f.input :quantity %>
                         <%= f.submit 'Add to Cart'%>
                       <% end %>

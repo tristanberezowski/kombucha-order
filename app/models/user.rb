@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :user_exemptions
+  has_many :product_exemptions,
+    through: :user_exemptions,
+    source: :exemptable,
+    source_type: 'ProductExemption'
   has_many :delivery_exemptions,
     through: :user_exemptions,
     source: :exemptable,

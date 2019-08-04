@@ -18,6 +18,15 @@ class Product < ApplicationRecord
     end
   end
 
+  def price_for user
+    #if it has a product exemption for current user, show that price
+    if user == nil
+      return self.price
+    end
+    product_exemption = user.product_exemptions.where(product: self).first
+    product_exemption ? product_exemption.fee : self.price
+  end
+
   def container
     self.selectable.container
   end
