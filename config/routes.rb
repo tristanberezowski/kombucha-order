@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  get 'invites/show'
+  devise_for :admins
+  authenticated :admin do
+    root 'admin/dashboard#show', as: :authenticated_root
+  end
+
   root to: "products#index"
 
-  devise_for :admins
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :invites, only: [:index, :create, :new]
-    resource :dashboard, only: [ :index ]
+    resource :dashboard, only: [ :show ]
     resources :products
     resources :liquids, only: [
       :index, :new, :create
