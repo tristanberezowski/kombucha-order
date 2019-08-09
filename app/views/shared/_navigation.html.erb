@@ -1,18 +1,18 @@
 <section class="navigation">
   <section class="navigation-title">
-    <h1>Hoochy Booch Orders</h1>
+    <div class="logo">  
+      <%= show_svg("logo-lg.svg") %>
+    </div>
   </section>
 
   <section class="navigation-links">
-    <%= link_to 'Home', products_path %>
-    |
     <% if admin_signed_in? %>
       <%= render "shared/admin_links" %>
     <% elsif user_signed_in? %>
       <%= render "shared/user_links" %>
     <% else %>
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-      |
+      <p> | </p>
       <%= link_to "Staff Login", new_admin_session_path, :class => 'navbar-link'  %>
     <% end %>
   </section>

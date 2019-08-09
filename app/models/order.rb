@@ -1,3 +1,5 @@
+require 'mailgun-ruby'
+
 class Order < ApplicationRecord
   include AASM
 
@@ -5,6 +7,8 @@ class Order < ApplicationRecord
   has_many :order_products
   has_many :products, through: :order_products
   has_one :payment
+
+  after_create :email_receipt
 
   aasm :delivery_status, column: :delivery_status do
     state :undelivered, initial: true
@@ -87,6 +91,29 @@ class Order < ApplicationRecord
   end
 
   private
+
+  def email_receipt
+    # mail(to: "tristanberezowski@gmail.com", subject: "Welcome!").tap do |message|
+    #   "Hope this works!"
+    # end
+
+    # mg_client = Mailgun::Client.new("f877bd7a-7e120914")
+
+    # message_params =  {
+    #                    from: 'tristan@mawji.vc',
+    #                    to:   'tristanberezowski@gmail.com',
+    #                    subject: 'The Ruby SDK is awesome!',
+    #                    text:    'It is really easy to send a message!'
+    #                   }
+    
+    # result = mg_client.send_message('example.com', message_params).to_h!
+    
+    # message_id = result['id']
+    # message = result['message']
+
+    # byebug
+
+  end
 
   def has_payment?
     self.payment

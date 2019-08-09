@@ -27,7 +27,7 @@ section.flavour-list {
   div {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 100px;
   }
 }
 
@@ -51,4 +51,10 @@ section.flavour-options {
 article.product {
   margin: $small-spacing;
   flex: 1;
+  form {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+  }
 }

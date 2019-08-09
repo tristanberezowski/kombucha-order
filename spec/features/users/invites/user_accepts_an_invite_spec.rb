@@ -6,7 +6,9 @@ feature 'User accepts an invite' do
   let(:email) { FFaker::Internet.email}
 
   let(:product) { create(:product, price: Money.new(5000)) }
-  let(:product_exemption) { create(:product_exemption, product: product, fee: Money.new(300)) }
+  let(:product_exemption) { 
+    create(:product_exemption, product: product, fee: Money.new(300)) 
+  }
   
   before do
     create(:invite_exemption, invite: invite, exemptable: delivery_exemption)

@@ -29,6 +29,7 @@ gem 'money-rails', '~>1.12'
 gem 'country_select'
 gem 'aasm'
 gem 'cocoon'
+gem 'mailgun-ruby', '~>1.1.6'
 
 group :development do
   gem "listen"

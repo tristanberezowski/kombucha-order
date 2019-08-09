@@ -10,7 +10,7 @@ feature 'User creates an order' do
     create(:product, price: Money.new(500), selectable: second_selection) 
   }
   let(:city) { Order::VALID_CITIES.sample }
-
+  let(:email_result) { Mailgun::Client.deliveries.first[:from] }
   before do
     sign_in_user
   end

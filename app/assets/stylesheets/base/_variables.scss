@@ -1,6 +1,7 @@
 // Typography
 $base-font-family: $font-stack-system;
 $heading-font-family: $base-font-family;
+$main-text: "Oswald", sans-serif;
 
 // Line height
 $base-line-height: 1.5;
@@ -43,4 +44,4 @@ $base-duration: 150ms;
 $base-timing: ease;
 
 // Screens
-$large-screen: 800px;
+$large-screen: 1000px;
