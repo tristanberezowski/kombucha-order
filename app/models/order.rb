@@ -46,12 +46,6 @@ class Order < ApplicationRecord
     MapleRidge
   )
 
-  DEFAULT_DELIVERY_FEE = Money.new(700)
-
-  def delivery_fee
-    user.delivery_exemption ? user.delivery_exemption.fee : DEFAULT_DELIVERY_FEE
-  end
-
   def payment_partial_path
     self.paid? ? "payment_details" : "unpaid_form"
   end

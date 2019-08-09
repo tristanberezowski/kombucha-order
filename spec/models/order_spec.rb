@@ -5,26 +5,6 @@ RSpec.describe Order, type: :model do
   it { should have_many :order_products }
   it { should have_many :products }
 
-  describe "#delivery_fee" do
-    context "a delivery exemption exists" do
-      let(:user) { create(:user) }
-      let(:delivery_exemption) { create(:delivery_exemption) }
-      let!(:user_exemption) { create(:user_exemption, user: user, exemptable: delivery_exemption) }
-      let(:order) { create(:order, user: user) }
-      let(:result) { order.delivery_fee }
-      it "should return the fee from the exemption" do
-        expect(result).to eq(delivery_exemption.fee)
-      end
-
-
-    end
-
-    context "a delivery exemption doesn't exist" do
-      
-    end
-
-  end
-
   describe "#make_delivery_date_next_possible" do
     let(:time) { Time.parse('2019-07-05 16:00:00 PDT -07:00') }
 

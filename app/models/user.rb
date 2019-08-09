@@ -19,6 +19,12 @@ class User < ApplicationRecord
     Cart.find_or_create_by!(user: self)
   end
 
+  DEFAULT_DELIVERY_FEE = Money.new(700)
+
+  def delivery_fee
+    self.delivery_exemption ? self.delivery_exemption.fee : DEFAULT_DELIVERY_FEE
+  end
+
   def delivery_exemption
     delivery_exemptions.first
   end
