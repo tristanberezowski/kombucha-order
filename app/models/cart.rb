@@ -5,6 +5,10 @@ class Cart < ApplicationRecord
 
 
   def total_price
-    products.map(&:price).inject(Money.new(0), :+)
+    total = 0
+    cart_products.each do |cart_product|
+      total += cart_product.quantity * cart_product.product.price
+    end
+    total
   end
 end
