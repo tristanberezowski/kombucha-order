@@ -1,6 +1,7 @@
 <h1>Admin Dashboard</h1>
 
 <section class="product-options">
+  <h5>Products</h5>
   <div>
     <%= link_to "View Products", admin_products_path %>
     <%= link_to "New Product", new_admin_product_path %>
@@ -22,10 +23,12 @@
 </section>
 
 <section class="user-options">
+  <h5>Accounts</h5>
   <%= link_to "View Users", admin_users_path %>
   <%= link_to "New User", new_admin_invite_path %>
 </section>
 
 <section class="order-options">
+  <h5>Orders</h5>
   <%= link_to "View Orders", admin_orders_path %>
 </section>

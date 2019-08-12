@@ -1,7 +1,7 @@
 // Typography
-$base-font-family: $font-stack-system;
+$main-text: 'Blinker', sans-serif;
+$base-font-family: $main-text;
 $heading-font-family: $base-font-family;
-$main-text: "Oswald", sans-serif;
 
 // Line height
 $base-line-height: 1.5;
@@ -20,7 +20,7 @@ $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 $red: red;
-$nav-bar: rgb(13, 185, 119);
+$nav-bar: rgb(13, 185, 156);
 
 // Font Colors
 $base-font-color: $dark-gray;
