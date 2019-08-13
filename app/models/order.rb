@@ -66,7 +66,12 @@ class Order < ApplicationRecord
   end
 
   def total
-    product_prices.inject(Money.new(0), &:+)
+    total = 0
+    order_products.each do |order_product|
+      total += order_product.quantity * order_product.product.price
+    end
+    total += self.delivery_fee
+    total
   end
 
   def email
@@ -82,6 +87,10 @@ class Order < ApplicationRecord
         price: cart_product.product.price,
       )
     end
+  end
+
+  def delivery_fee
+    user.delivery_fee
   end
 
   private

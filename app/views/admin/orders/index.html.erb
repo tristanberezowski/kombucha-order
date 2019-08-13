@@ -1,11 +1,19 @@
 <section class="admin-orders-index">
-
   <h1>Order Summary</h1>
-
-  <% @flavours.each do |flavour| %>
-    <p><strong>Name: </strong> <%= flavour.name %></p>
-    <p> <%= flavour.total_volume_needed(@undelivered_orders) %> </p>
-  <% end %>
+  <table class="order-summary-table">
+    <thead>
+      <th>Name</th>
+      <th>Volume</th>
+    </thead>
+    <tbody>
+      <% @flavours.each do |flavour| %>
+        <tr>
+          <td><strong>Name: </strong> <%= flavour.name %></td>
+          <td> <%= flavour.total_volume_needed(@undelivered_orders) %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <h1>View Orders</h1>
 

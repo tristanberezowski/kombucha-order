@@ -1,7 +1,38 @@
 <section class="orders-new">
   <h1>Review your order</h1>
 
+  <table class="products-table">
+    <thead>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </thead>
+
+    <tbody>
+      <% @cart.cart_products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.quantity %></td>
+          <td><%= humanized_money_with_symbol (product.price * product.quantity) %></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td> Delivery Fee </td>
+          <td> n/a </td>
+          <td> <%= humanized_money_with_symbol @order.user.delivery_fee %> </td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @cart.total_price + @order.user.delivery_fee %></td>
+    </tfoot>
+  </table>
+
   <%= render "form", order: @order %>
 
-  <p> Delivery Fee: <%= humanized_money_with_symbol @order.user.delivery_fee %> </p>
+  
+
 </section>

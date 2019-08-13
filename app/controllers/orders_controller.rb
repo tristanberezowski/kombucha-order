@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @cart = current_user.cart
     @order = Order.new
     @order.user = current_user
   end
@@ -11,6 +12,7 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.add_products(cart_products)
     if @order.save
+      clear_cart
       redirect_to @order, notice: t('orders.create.success')
     else
       render :new
@@ -42,5 +44,9 @@ class OrdersController < ApplicationController
 
   def cart_products
     current_user.cart.cart_products
+  end
+
+  def clear_cart
+    cart_products.destroy_all
   end
 end
