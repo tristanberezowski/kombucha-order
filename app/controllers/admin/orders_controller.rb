@@ -11,4 +11,17 @@ class Admin::OrdersController < ApplicationController
       Payment.new(order: @order)
     end
   end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.order_products.destroy_all
+    if @order.payment
+      @order.payment.destroy
+    end
+    if @order.destroy
+      redirect_to admin_orders_path, notice: t('orders.destroy.success')
+    else
+      render :index
+    end
+  end
 end

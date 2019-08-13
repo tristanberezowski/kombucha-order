@@ -5,3 +5,5 @@ en:
         success: 'Payment information created, order updated.'
     create:
       success: 'Order created successfully'
+    destroy:
+      success: 'Order succesfully deleted'

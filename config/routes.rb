@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     ]
     resources :users, only: [:show, :index]
     resources :user_exemptions, only: [:update]
-    resources :orders, only: [:show, :index] do
+    resources :orders, only: [:show, :index, :destroy] do
       resource :payment, only: [:create, :new]
     end
   end

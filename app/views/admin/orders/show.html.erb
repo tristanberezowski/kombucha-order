@@ -57,3 +57,4 @@
   </table>
 
 </section>
+  <%= link_to 'Delete this order permanently', admin_order_path(@order), method: :delete, data: { confirm: "Are you sure?" } %>
