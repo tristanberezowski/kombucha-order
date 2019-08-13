@@ -68,10 +68,10 @@ class Order < ApplicationRecord
   def total
     total = 0
     order_products.each do |order_product|
-      total += order_product.quantity * order_product.product.price
+      total += (order_product.quantity * order_product.product.price)
     end
     total += self.delivery_fee
-    total
+    return total
   end
 
   def email

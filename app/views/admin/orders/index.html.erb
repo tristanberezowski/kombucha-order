@@ -3,13 +3,15 @@
   <table class="order-summary-table">
     <thead>
       <th>Name</th>
-      <th>Volume</th>
+      <th>Volume (mL)</th>
+      <th>Kegs</th>
     </thead>
     <tbody>
       <% @flavours.each do |flavour| %>
         <tr>
           <td><strong>Name: </strong> <%= flavour.name %></td>
           <td> <%= flavour.total_volume_needed(@undelivered_orders) %> </td>
+          <td> <%= flavour.total_volume_needed(@undelivered_orders) / 19500.00 %> </td>
         </tr>
       <% end %>
     </tbody>
@@ -21,7 +23,7 @@
     <p>Name: <%= order.shipping_name %></p>
     <p>Created at: <%= order.created_at %></p>
     <p>Delivery Date: <%= order.delivery_date %></p>
-    <% order.products.each do |product| %>
+    <% order.order_products.each do |product| %>
       <p><%= product.name %></p>
     <% end %>
     <a class="show-order" href="/admin/orders/<%= order.id %>">View order</a>
