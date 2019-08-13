@@ -1,40 +1,59 @@
 <section class="admin-orders-show">
   <h1>View Order</h1>
-  <p class="created-at">Created at: <%= @order.created_at%></p>
+  <h4 class="created-at">Created at: <%= @order.created_at%></h4>
   
-  <div> <%= render @order.payment_partial_path, payment: @order.payment, order: @order %> </div>
+  <div class="payment"> <%= render @order.payment_partial_path, payment: @order.payment, order: @order %> </div>
+  <section class="order-details">
+    <h2>Order Details</h2>
 
-  <h2>Order Content</h2>
+    <p>Email: <%= @order.email %></p>
 
-  <% @order.products.each do |product| %>
-    <article>
-        <p><%= product.name %></p>
-        <p><%= product.price %></p>
-    </article>
-<% end %>
-<h3><%="Total: #{humanized_money_with_symbol @order.total}"%></h3>
+    <div class="shipping-information">
+      <h4>Shipping Information</h4>
+      <p>Name: <%= @order.shipping_name %></p>
+      <p>Address: <%= @order.shipping_address %>, <%= @order.shipping_city %>, <%= @order.shipping_province %>, <%= @order.shipping_country %></p>
+      <p>Postal Code: <%= @order.shipping_postal %></p>
+    </div>
 
-<br>
+    <div class="billing-information">
+      <h4>Billing Information</h4>
+      <p>Name: <%= @order.billing_name %></p>
+      <p>Address: <%= @order.billing_address %>, <%= @order.billing_city %>, <%= @order.billing_province %>, <%= @order.billing_country %></p>
+      <p>Postal Code: <%= @order.billing_postal %></p>
+    </div>
 
-<h2>Order Details</h2>
+    <p>Notes: <%= @order.note %></p>
 
-<p>Email: <%= @order.email %></p>
+</section>
 
-<div class="shipping-information">
-  <h4>Shipping Information</h4>
-  <p>Name: <%= @order.shipping_name %></p>
-  <p>Address: <%= @order.shipping_address %>, <%= @order.shipping_city %>, <%= @order.shipping_province %>, <%= @order.shipping_country %></p>
-  <p>Postal Code: <%= @order.shipping_postal %></p>
-</div>
+  <table class="products-table">
+    <thead>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </thead>
 
-<div class="billing-information">
-  <h4>Billing Information</h4>
-  <p>Name: <%= @order.billing_name %></p>
-  <p>Address: <%= @order.billing_address %>, <%= @order.billing_city %>, <%= @order.billing_province %>, <%= @order.billing_country %></p>
-  <p>Postal Code: <%= @order.billing_postal %></p>
-</div>
+    <tbody>
+      <% @order.order_products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.quantity %></td>
+          <td><%= humanized_money_with_symbol (product.price * product.quantity) %></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td> Delivery Fee </td>
+          <td> n/a </td>
+          <td> <%= humanized_money_with_symbol @order.user.delivery_fee %> </td>
+        </tr>
+    </tbody>
 
-<p>Notes: <%= @order.note %></p>
-
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @order.total %></td>
+    </tfoot>
+  </table>
 
 </section>

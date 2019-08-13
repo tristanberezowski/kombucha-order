@@ -1,6 +1,7 @@
 <%= simple_form_for payment, url: admin_order_payment_path(order) do |f| %>
     <section class="form-inputs">
       <%= f.input :payee %>
+      <%= f.input :contact_information %>
       <%= f.input :payment_method, collection: ["Credit Card", "Cheque", "Etransfer"] %>
       <%= f.input :payment_date, as: :date, html5: true, start_year: 2019,
                               end_year: Date.today.year,
