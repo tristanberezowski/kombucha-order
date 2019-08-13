@@ -19,6 +19,12 @@ class Admin::InvitesController < Admin::ApplicationController
     end
   end
 
+  def edit
+    @invite = Invite.find(params[:id])
+    @invite.deliver!
+    redirect_to admin_users_path
+  end
+
   private
 
   def invite_params

@@ -1,9 +1,10 @@
 <section class="admin-flavours-index">
   <% @flavours.each do |flavour| %>
-    <article class="flavour">
-      <p><%= flavour.name %><%= flavour.liquid.name %></p>
+    <article>
+      <p><strong><%= flavour.name %><%= " " %><%= flavour.liquid.name %></strong></p>   
       <p><%= flavour.description %></p>
     </article>
+    <hr />
   <% end %>
 
   <a href="/admin/flavours/new">New Flavour</a>

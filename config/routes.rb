@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :invites, only: [:index, :create, :new]
+    resources :invites, only: [:index, :create, :new, :edit]
     resource :dashboard, only: [ :show ]
     resources :products
     resources :liquids, only: [

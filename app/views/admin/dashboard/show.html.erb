@@ -4,20 +4,24 @@
   <h5>Products</h5>
   <div>
     <%= link_to "View Products", admin_products_path %>
+    |
     <%= link_to "New Product", new_admin_product_path %>
   </div>
   
   <div>
     <%= link_to "View Flavours", admin_flavours_path %>
+    |
     <%= link_to "New Flavour", new_admin_flavour_path %>
     </div>
 
   <div>
     <%= link_to "View Container", admin_containers_path %>
+    |
     <%= link_to "New Container", new_admin_container_path%>
   </div>
   <div>
     <%= link_to "View Liquids", admin_liquids_path %>
+    |
     <%= link_to "New Liquid", new_admin_liquid_path %>
   </div>
 </section>
@@ -25,6 +29,7 @@
 <section class="user-options">
   <h5>Accounts</h5>
   <%= link_to "View Users", admin_users_path %>
+  |
   <%= link_to "New User", new_admin_invite_path %>
 </section>
 
