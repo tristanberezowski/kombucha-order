@@ -1,0 +1,5 @@
+en:
+  cart_products:
+    create:
+      success: 'Product was added to your cart successfully.'
+      fail: 'Product could not be added to your cart.'

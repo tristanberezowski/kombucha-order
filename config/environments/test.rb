@@ -18,4 +18,15 @@ Rails.application.configure do
   config.action_mailer.asset_host = "http://www.example.com"
   config.active_job.queue_adapter = :inline
 
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: 'f877bd7a-7e120914',
+    domain: 'hoochyorder.com',
+  }
+
+  #for svgs:
+  config.assets.precompile += %w( '.svg' )  
+
+  # Must include to get inline SVGs to work in deploy
+  config.assets.css_compressor = :sass
 end

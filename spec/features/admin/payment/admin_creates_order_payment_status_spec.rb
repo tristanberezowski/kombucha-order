@@ -15,7 +15,6 @@ feature "Admin creates order payment status" do
     fill_in_payment
     click_on 'Create Payment'
     expect(page).to have_content t('orders.payment.create.success')
-    expect(page).to have_content "Order is paid"
 
   end
   
@@ -25,7 +24,6 @@ feature "Admin creates order payment status" do
     fill_in_payment
     click_on 'Create Payment'
     expect(page).to have_content t('orders.payment.create.success')
-    expect(page).to have_content "Order is paid"
     
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_014552) do
+ActiveRecord::Schema.define(version: 2019_08_04_023118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "delivery_exemptions", force: :cascade do |t|
+    t.integer "fee_cents", default: 0, null: false
+    t.string "fee_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "flavours", force: :cascade do |t|
     t.bigint "liquid_id"
     t.string "name"
@@ -77,6 +84,28 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
     t.index ["liquid_id"], name: "index_flavours_on_liquid_id"
+  end
+
+  create_table "invite_exemptions", force: :cascade do |t|
+    t.bigint "invite_id"
+    t.string "exemptable_type"
+    t.bigint "exemptable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exemptable_type", "exemptable_id"], name: "index_invite_exemptions_on_exemptable_type_and_exemptable_id"
+    t.index ["invite_id"], name: "index_invite_exemptions_on_invite_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "email"
+    t.bigint "admin_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+    t.bigint "user_id"
+    t.index ["admin_id"], name: "index_invites_on_admin_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "liquid_selections", force: :cascade do |t|
@@ -139,13 +168,13 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
-  create_table "product_containers", force: :cascade do |t|
+  create_table "product_exemptions", force: :cascade do |t|
     t.bigint "product_id"
-    t.bigint "container_id"
+    t.integer "fee_cents", default: 0, null: false
+    t.string "fee_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["container_id"], name: "index_product_containers_on_container_id"
-    t.index ["product_id"], name: "index_product_containers_on_product_id"
+    t.index ["product_id"], name: "index_product_exemptions_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -165,6 +194,9 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
     t.float "delivery_fee"
     t.float "order_minimum"
     t.bigint "user_id"
+    t.string "exemptable_type"
+    t.bigint "exemptable_id"
+    t.index ["exemptable_type", "exemptable_id"], name: "index_user_exemptions_on_exemptable_type_and_exemptable_id"
     t.index ["user_id"], name: "index_user_exemptions_on_user_id"
   end
 
@@ -184,13 +216,15 @@ ActiveRecord::Schema.define(version: 2019_07_09_014552) do
   add_foreign_key "cart_products", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "flavours", "liquids"
+  add_foreign_key "invite_exemptions", "invites"
+  add_foreign_key "invites", "admins"
+  add_foreign_key "invites", "users"
   add_foreign_key "liquid_selections", "containers"
   add_foreign_key "liquid_selections", "flavours"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
-  add_foreign_key "product_containers", "containers"
-  add_foreign_key "product_containers", "products"
+  add_foreign_key "product_exemptions", "products"
   add_foreign_key "user_exemptions", "users"
 end

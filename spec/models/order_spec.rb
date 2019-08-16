@@ -6,7 +6,7 @@ RSpec.describe Order, type: :model do
   it { should have_many :products }
 
   describe "#make_delivery_date_next_possible" do
-    let(:time) { Time.zone.parse('2019-07-05 16:00:00') }
+    let(:time) { Time.parse('2019-07-05 16:00:00 PDT -07:00') }
 
     before do
       Timecop.safe_mode = false
@@ -80,25 +80,14 @@ RSpec.describe Order, type: :model do
   end
 
   describe "#total" do
-    context "the order has no products" do
-
-      let(:order) { create(:order) }
-
-      it "returns $0" do
-        expect(order.total).to eq (Money.new(0))
-      end
-    end
 
     context "the order has products" do
-      let(:order) { create(:order) }
-      let(:product) { create(:product) }
-
-      before do
-        create(:order_product, order: order, product: product)
-      end
+      let!(:order) { create(:order) }
+      let!(:product) { create(:product, price: 2) }
+      let!(:order_product) { create(:order_product, order: order, product: product) }
 
       it "sums the products in the order" do
-        expect(order.total).to eq (product.price)
+        expect(order.total).to eq (product.price * order_product.quantity + order.delivery_fee)
       end
     end
   end

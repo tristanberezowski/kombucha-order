@@ -1,0 +1,7 @@
+<section class="admin-invites-index">
+  <% @invites.each do |invite| %>
+  <p>Email: <%= invite.email %></p>
+  <p>Token: <%= invite.token %></p>
+  <p>Invite Link: <%= invite_path(invite.token) %></p>
+  <% end %>
+</section>

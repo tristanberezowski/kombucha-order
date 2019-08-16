@@ -1,0 +1,11 @@
+div.flashes {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: $base-spacing;
+}
+
+div.flash-alert {
+  background-color: $red;
+  color: white;
+  padding: $base-spacing;
+}

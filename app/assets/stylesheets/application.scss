@@ -6,3 +6,23 @@
 @import "neat";
 
 @import "base/base";
+
+// Resources
+@import "navigation";
+@import "products";
+@import "dashboard";
+@import "orders";
+@import "users";
+@import "flashes";
+
+main.main-content {
+  display: block;
+  max-width: $large-screen;
+  margin: 0 auto;
+  padding-bottom: $base-spacing * 2;
+}
+
+.description {
+  font-size: 0.5em;
+  font-style: italic;
+}

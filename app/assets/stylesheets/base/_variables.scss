@@ -1,5 +1,6 @@
 // Typography
-$base-font-family: $font-stack-system;
+$main-text: 'Blinker', sans-serif;
+$base-font-family: $main-text;
 $heading-font-family: $base-font-family;
 
 // Line height
@@ -11,12 +12,15 @@ $base-border-radius: 3px;
 $base-spacing: 1.5em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
+$description: 0.5em;
 
 // Colors
 $blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
+$red: red;
+$nav-bar: rgb(13, 185, 156);
 
 // Font Colors
 $base-font-color: $dark-gray;
@@ -38,3 +42,6 @@ $focus-outline-offset: 2px;
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+// Screens
+$large-screen: 1000px;

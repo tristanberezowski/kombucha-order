@@ -1,9 +1,0 @@
-<h1>HOME INDEX</h1>
-
-<% if admin_signed_in? %>
-    <div> <%=current_admin%> </div>
-    <%= link_to "Create Account", new_user_registration_path %>
-    <br>
-    <%= link_to "View/Edit Accounts", "/admin/users/" %>
-    
-<% end %>

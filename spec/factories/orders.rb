@@ -14,5 +14,24 @@ FactoryBot.define do
     shipping_postal { FFaker::AddressUS.zip_code }
     shipping_country { FFaker::Address.country }
     note { FFaker::Lorem.paragraph }
+
+    factory :unpaid_order do
+      after(:create) do |order|
+        create_list(:order_product, 5)
+      end
+
+      factory :paid_order do
+        after(:create) do |order|
+          create(:payment, order: order)
+          order.pay!
+        end
+
+        factory :delivered_order do
+          after(:create) do |order|
+            order.deliver!
+          end
+        end
+      end
+    end
   end
 end

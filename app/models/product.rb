@@ -1,12 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :selectable, polymorphic: true
 
-  has_many :product_containers
-  has_many :available_containers,
-    through: :product_containers,
-    class_name: 'Container',
-    source: :container
-
   VALID_TYPES = %w(
     LiquidSelection
   )
@@ -22,6 +16,23 @@ class Product < ApplicationRecord
     if valid_type?(type)
       self.selectable = type.constantize.new(attributes)
     end
+  end
+
+  def price_for user
+    #if it has a product exemption for current user, show that price
+    if user == nil
+      return self.price
+    end
+    product_exemption = user.product_exemptions.where(product: self).first
+    product_exemption ? product_exemption.fee : self.price
+  end
+
+  def container
+    self.selectable.container
+  end
+
+  def flavour
+    self.selectable.flavour
   end
 
   private

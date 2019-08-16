@@ -1,12 +1,35 @@
 <h1> View Order </h1>
 
-<% @order.order_products.each do |product| %>
-  <article class="products">
-    <p><%= product.name %></p>
-    <p><%= humanized_money_with_symbol product.price %></p>
-  </article>
-<% end %>
+<table class="products-table">
+    <thead>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </thead>
 
-<h3><%="Total: #{humanized_money_with_symbol @order.total}"%></h3>
+    <tbody>
+      <% @order.order_products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.quantity %></td>
+          <td><%= humanized_money_with_symbol (product.price * product.quantity) %></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td> Delivery Fee </td>
+          <td> n/a </td>
+          <td> <%= humanized_money_with_symbol @order.user.delivery_fee %> </td>
+        </tr>
+    </tbody>
 
-<p><%= @order.delivery_date.strftime("Scheduled for delivery on %m/%d/%Y") %></p>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @order.total %></td>
+    </tfoot>
+  </table>
+
+
+
+<h3><%= @order.delivery_date.strftime("Scheduled for delivery on %m/%d/%Y") %></h3>

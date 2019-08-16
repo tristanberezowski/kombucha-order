@@ -5,6 +5,37 @@ RSpec.describe Flavour, type: :model do
   it { should validate_presence_of :description }
   it { should belong_to :liquid }
 
+  describe "products" do
+    let!(:flavour) { create(:flavour) }
+    let!(:selection) { create(:liquid_selection, flavour: flavour) }
+    let!(:product1) { create(:product) }
+    let!(:product2) { create(:product, selectable: selection) }
+    let(:result) { flavour.products }
+
+    it "Should return products of correct flavour" do
+      expect(result.length).to eq(1)
+      expect(result[0]).to eq(product2)
+    end
+
+  end
+
+  describe "#container_count_needed" do
+    let(:flavour) { create(:flavour) }
+    let(:order1) { create(:order) }
+    let(:order2) { create(:order) }
+    let(:container) { create(:container) }
+    let(:selectable) { create(:liquid_selection, flavour: flavour, container: container) }
+    let(:product) { create(:product, selectable: selectable) }
+    let!(:order_product1) { create(:order_product, product: product, quantity: 3, order: order1) }
+    let!(:order_product2) { create(:order_product, product: product, quantity: 2, order: order2) }
+    let(:expected_count) { 5 }
+    let(:result) { flavour.container_count_needed([order1, order2], container) }
+
+    it "Should return the number of containers needed from the orders" do
+      expect(result).to eq(expected_count)
+    end
+  end
+
   describe "#total_volume_needed" do
     let(:flavour) { create(:flavour) }
     let(:orders) { create_list(:order, rand(1..5) ) }
@@ -20,7 +51,7 @@ RSpec.describe Flavour, type: :model do
 
     before do
       orders.each do |order|
-        create_list(:order_product, 2, order: order, product: product )
+        create_list(:order_product, 2, order: order, product: product, quantity: 1 )
       end
     end
 

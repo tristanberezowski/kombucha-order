@@ -1,3 +1,5 @@
+require 'mailgun-ruby'
+
 class Order < ApplicationRecord
   include AASM
 
@@ -6,7 +8,9 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
   has_one :payment
 
-  aasm column: :delivery_status do
+  after_create :email_receipt
+
+  aasm :delivery_status, column: :delivery_status do
     state :undelivered, initial: true
     state :delivered
 
@@ -15,7 +19,7 @@ class Order < ApplicationRecord
     end
   end
 
-  aasm column: :payment_status do
+  aasm :payment_status, column: :payment_status do
     state :unpaid, initial: true
     state :paid
 
@@ -62,7 +66,12 @@ class Order < ApplicationRecord
   end
 
   def total
-    product_prices.inject(Money.new(0), &:+)
+    total = 0
+    order_products.each do |order_product|
+      total += (order_product.quantity * order_product.product.price)
+    end
+    total += self.delivery_fee
+    return total
   end
 
   def email
@@ -80,7 +89,34 @@ class Order < ApplicationRecord
     end
   end
 
+  def delivery_fee
+    user.delivery_fee
+  end
+
   private
+
+  def email_receipt
+    # mail(to: "tristanberezowski@gmail.com", subject: "Welcome!").tap do |message|
+    #   "Hope this works!"
+    # end
+
+    # mg_client = Mailgun::Client.new("f877bd7a-7e120914")
+
+    # message_params =  {
+    #                    from: 'tristan@mawji.vc',
+    #                    to:   'tristanberezowski@gmail.com',
+    #                    subject: 'The Ruby SDK is awesome!',
+    #                    text:    'It is really easy to send a message!'
+    #                   }
+    
+    # result = mg_client.send_message('example.com', message_params).to_h!
+    
+    # message_id = result['id']
+    # message = result['message']
+
+    # byebug
+
+  end
 
   def has_payment?
     self.payment

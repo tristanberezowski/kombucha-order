@@ -1,6 +1,60 @@
-<h2>Users</h2>
+<section class="users-index">
+  <h2>View Users</h2>
 
-<% @users.each do |u| %>
-    <div><%= u.email %></div>
-    <a href="/admin/users/<%= u.id %>">Edit</a>
-<% end %>
+  <%= link_to 'Send Invite', new_admin_invite_path, class: 'primary-button' %>
+
+  <hr />
+  <h3>Users</h3>
+  <table class="users">
+    <thead>
+      <th>Email</th>
+      <th>Actions</th>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <h3>Delivered Invites</h3>
+  <table class="users">
+    <thead>
+      <th>Email</th>
+      <th>Link</th>
+      <th>Actions</th>
+    </thead>
+
+    <tbody>
+      <% @delivered.each do |invite| %>
+        <tr>
+          <td><%= invite.email %></td>
+          <td><%= invite_path(invite.token) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3>Undelivered Invites</h3>
+  <table class="users undelivered">
+    <thead>
+      <th>Email</th>
+      <th>Link</th>
+      <th>Actions</th>
+    </thead>
+
+    <tbody>
+      <% @undelivered.each do |invite| %>
+        <tr>
+          <td><%= invite.email %></td>
+          <td><%= invite_path(invite.token) %></td>
+          <td><%= link_to "Mark as delivered", edit_admin_invite_path(invite) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

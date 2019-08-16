@@ -5,14 +5,39 @@ html {
   line-height: $base-line-height;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
+h1 {
+  font-family: $heading-font-family;
+  font-size: 1.8em;
+  line-height: $heading-line-height;
+  margin: 0 0 $small-spacing;
+}
+h2 {
+  font-family: $heading-font-family;
+  font-size: 1.6em;
+  line-height: $heading-line-height;
+  margin: 0 0 $small-spacing;
+}
+h3 {
+  font-family: $heading-font-family;
+  font-size: 1.4em;
+  line-height: $heading-line-height;
+  margin: 0 0 $small-spacing;
+}
+h4 {
+  font-family: $heading-font-family;
+  font-size: 1.2em;
+  line-height: $heading-line-height;
+  margin: 0 0 $small-spacing;
+}
+h5 {
+  font-family: $heading-font-family;
+  font-size: 1em;
+  line-height: $heading-line-height;
+  margin: 0 0 $small-spacing;
+}
 h6 {
   font-family: $heading-font-family;
-  font-size: modular-scale(1);
+  font-size: 0.8em;
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
 }
@@ -24,6 +49,7 @@ p {
 a {
   color: $action-color;
   text-decoration-skip: ink;
+  text-decoration: none;
   transition: color $base-duration $base-timing;
 
   &:hover {

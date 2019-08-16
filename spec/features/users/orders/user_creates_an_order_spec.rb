@@ -3,29 +3,27 @@ require 'rails_helper'
 feature 'User creates an order' do
   let(:keg) { create(:keg) }
   let(:growler) { create(:growler) }
-  let(:selection) { create(:liquid_selection, container: growler) }
-  let(:second_selection) { create(:liquid_selection, container: keg) }
-  let(:product) { create(:product, price: Money.new(500), selectable: selection) }
+  let!(:selection) { create(:liquid_selection, container: growler) }
+  let!(:second_selection) { create(:liquid_selection, container: keg) }
+  let!(:product) { create(:product, price: Money.new(500), selectable: selection) }
   let!(:second_product) { 
     create(:product, price: Money.new(500), selectable: second_selection) 
   }
   let(:city) { Order::VALID_CITIES.sample }
-
+  let(:email_result) { Mailgun::Client.deliveries.first[:from] }
   before do
-    create(:product_container, product: product, container: keg)
-    create(:product_container, product: product, container: growler)
     sign_in_user
   end
 
   scenario 'by saving it for later' do
     visit products_path
 
-    within ".product-#{product.id}" do
+    within "#product-#{product.id}" do
       fill_in 'Quantity', with: '2'
       click_on 'Add to Cart'
     end
 
-    within ".product-#{second_product.id}" do
+    within "#product-#{second_product.id}" do
       fill_in 'Quantity', with: '3'
       click_on 'Add to Cart'
     end

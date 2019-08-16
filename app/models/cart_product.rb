@@ -6,4 +6,6 @@ class CartProduct < ApplicationRecord
     only_integer: true,
     greater_than_or_equal_to: 1
   }
+
+  delegate :price, :name, to: :product
 end
