@@ -5,6 +5,12 @@ class Flavour < ApplicationRecord
 
   monetize :price_cents
 
+  def container_count_needed(orders, container)
+    containers = count_containers_for_orders(orders, container)
+    total = containers.flatten.inject(&:+)
+    return total
+  end
+
   def total_volume_needed(orders)
     volumes = total_volume_needed_for_orders(orders)
     total = volumes.flatten.inject(&:+)
@@ -17,6 +23,22 @@ class Flavour < ApplicationRecord
   end
 
   private
+
+  def count_containers_for_orders(orders, container)
+    orders.map do |order|
+      container_count_single_order(order, container)
+    end
+  end
+
+  def container_count_single_order(order, container)
+    total = 0
+    order.order_products.each do |order_product|
+      if order_product.product.container == container && order_product.product.flavour == self
+        total += order_product.quantity
+      end
+    end
+    total
+  end
 
   def total_volume_needed_for_orders(orders)
     orders.map do |order|
@@ -33,8 +55,8 @@ class Flavour < ApplicationRecord
   end
 
   def total_volume_needed_single_order(order)
-    order.products.map do |product|
-      volume_for(product.selectable)
+    order.order_products.map do |order_product|
+      volume_for(order_product.product.selectable) * order_product.quantity
     end
   end
 end

@@ -31,6 +31,10 @@ class Product < ApplicationRecord
     self.selectable.container
   end
 
+  def flavour
+    self.selectable.flavour
+  end
+
   private
 
   def valid_type?(type)
