@@ -14,6 +14,7 @@ class User < ApplicationRecord
     source: :exemptable,
     source_type: 'DeliveryExemption'
   has_one :cart
+  has_many :cart_products, through: :cart
 
   def cart
     Cart.find_or_create_by!(user: self)

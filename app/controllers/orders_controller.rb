@@ -43,10 +43,10 @@ class OrdersController < ApplicationController
   end
 
   def cart_products
-    current_user.cart.cart_products
+    current_user.cart_products
   end
 
   def clear_cart
-    cart_products.destroy_all
+    current_user.cart.destroy!
   end
 end
