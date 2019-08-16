@@ -1,0 +1,11 @@
+<article class="flavour">
+  <div class="flavour-information">
+    <h3><%= flavour.name %></h3>
+    <p class="description"><%= flavour.description %></p>
+  </div>
+  <section class="flavour-options">
+    <% flavour.products.each do |product| %>
+      <%= render "product", product: product %>
+    <% end%>
+  </section>
+</article> 
