@@ -17,7 +17,7 @@
               <td><strong>Name: </strong> <%= flavour.name %></td>
               <td> <%= flavour.total_volume_needed(@undelivered_orders) %>
                 <%= " / " %> <%= (flavour.total_volume_needed(@undelivered_orders) / 19500.00).round(2) %></td>
-              <td> A few </td>
+              <td> <%= flavour.container_count_needed(@undelivered_orders, @case) %> </td>
             </tr>
             <% end %>
         <% end %>

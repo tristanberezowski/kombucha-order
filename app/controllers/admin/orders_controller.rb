@@ -1,6 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def index
     @orders = Order.all
+    @case = Container.find_by(volume: 12 * 375)
     @flavours = Flavour.all
     @undelivered_orders = Order.undelivered
   end
