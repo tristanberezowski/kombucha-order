@@ -3,11 +3,11 @@
   <br>
 
   <section class="liquid-list">
-    <% @liquids.each do |liquid| %>
+    <% @product_liquids.each do |liquid| %>
       <article class="liquid">
         <h1><%= liquid.name %></h1>
         <section class="flavour-list">
-          <% @flavours.each do |flavour| %>
+          <% liquid.flavours.each do |flavour| %>
             <% if liquid.flavours.include? flavour %>
               <%= render "flavour", flavour: flavour %>
             <% end %>

@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Liquid, type: :model do
-  it { should validate_presence_of :name }
   it { should have_many :flavours }
+  it { should have_many :liquid_selections }
+
+  it { should validate_presence_of :name }
+
 
   describe "#containers_count" do
     let(:liquid) { create(:liquid) }

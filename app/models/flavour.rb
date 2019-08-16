@@ -1,5 +1,6 @@
 class Flavour < ApplicationRecord
   belongs_to :liquid
+  has_many :liquid_selections
   validates_presence_of :name
   validates_presence_of :description
 
