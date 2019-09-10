@@ -14,6 +14,7 @@ feature "Admin creates a container" do
 
     fill_in 'Name', with: '2L Growler'
     fill_in 'Volume', with: 2000
+    fill_in 'Environmental Fee', with: 0.11
 
     click_on 'Create Container'
 

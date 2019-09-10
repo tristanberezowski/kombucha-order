@@ -1,6 +1,19 @@
 <section class='admin-containers-index'>
-  <% @containers.each do |container| %>
-    <p><%= container.name %> | <%= container.volume %>mL</p>
-  <% end %>
+  <table class="containers-index-table">
+    <thead>
+      <th>Name</th>
+      <th>Volume (mL)</th>
+      <th>Environmental Fee</th>
+    <thead>
+    <tbody>
+      <% @containers.each do |container| %>
+        <tr>
+          <td><%= container.name %></td>
+          <td><%= container.volume %>mL</td>
+          <td><%= humanized_money_with_symbol container.environmental_fee %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <table>
   <a href="/admin/containers/new">New Container</a>
 </section>

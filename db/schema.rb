@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_023118) do
+ActiveRecord::Schema.define(version: 2019_08_31_105033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2019_08_04_023118) do
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
+    t.integer "environmental_fee_cents", default: 0, null: false
+    t.string "environmental_fee_currency", default: "USD", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
