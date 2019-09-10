@@ -6,7 +6,6 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_products
   has_many :products, through: :order_products
-  has_one :payment
 
   after_create :email_receipt
 
@@ -16,15 +15,6 @@ class Order < ApplicationRecord
 
     event :deliver do
       transitions from: :undelivered, to: :delivered
-    end
-  end
-
-  aasm :payment_status, column: :payment_status do
-    state :unpaid, initial: true
-    state :paid
-
-    event :pay do
-      transitions from: :unpaid, to: :paid, guard: :has_payment?
     end
   end
 
@@ -45,10 +35,6 @@ class Order < ApplicationRecord
     PortMoody
     MapleRidge
   )
-
-  def payment_partial_path
-    self.paid? ? "payment_details" : "unpaid_form"
-  end
 
   def delivery_date
     make_delivery_date_next_possible(self.shipping_city)
@@ -116,10 +102,6 @@ class Order < ApplicationRecord
 
     # byebug
 
-  end
-
-  def has_payment?
-    self.payment
   end
 
   def product_prices

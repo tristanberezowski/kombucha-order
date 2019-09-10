@@ -2,7 +2,6 @@
   <h1>View Order</h1>
   <h4 class="created-at">Created at: <%= @order.created_at%></h4>
   
-  <div class="payment"> <%= render @order.payment_partial_path, payment: @order.payment, order: @order %> </div>
   <section class="order-details">
     <h2>Order Details</h2>
 
