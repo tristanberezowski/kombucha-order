@@ -46,8 +46,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     arel (9.0.0)
     autoprefixer-rails (9.5.1.1)
       execjs
@@ -84,9 +82,6 @@ GEM
       selenium-webdriver
     childprocess (1.0.1)
       rake (< 13.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     cocoon (1.2.14)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
@@ -143,7 +138,6 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     i18n_data (0.8.0)
-    io-like (0.3.0)
     json (2.2.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -336,6 +330,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webdrivers (4.1.2)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.5.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -358,7 +356,6 @@ DEPENDENCIES
   bullet
   bundler-audit (>= 0.5.0)
   capybara-selenium
-  chromedriver-helper
   cocoon
   country_select
   database_cleaner
@@ -400,6 +397,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier
   web-console
+  webdrivers (~> 4.0)
   webmock
 
 RUBY VERSION

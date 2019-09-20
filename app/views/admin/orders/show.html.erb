@@ -43,8 +43,13 @@
         <tr>
           <td> Delivery Fee </td>
           <td> n/a </td>
-          <td> <%= humanized_money_with_symbol @order.user.delivery_fee %> </td>
+          <td> <%= humanized_money_with_symbol @order.delivery_fee %> </td>
         </tr>
+        <tr>
+          <td> Environmental Fee </td>
+          <td> n/a </td>
+          <td> <%= humanized_money_with_symbol @order.environmental_fee %> </td>
+        <tr>
     </tbody>
 
     <tfoot>

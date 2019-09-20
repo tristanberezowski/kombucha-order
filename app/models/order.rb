@@ -57,6 +57,7 @@ class Order < ApplicationRecord
       total += (order_product.quantity * order_product.product.price)
     end
     total += self.delivery_fee
+    total += self.environmental_fee
     return total
   end
 
@@ -77,6 +78,14 @@ class Order < ApplicationRecord
 
   def delivery_fee
     user.delivery_fee
+  end
+
+  def environmental_fee
+    total = 0
+    order_products.each do |order_product|
+      total += (order_product.quantity * order_product.product.environmental_fee)
+    end
+    return total
   end
 
   private
