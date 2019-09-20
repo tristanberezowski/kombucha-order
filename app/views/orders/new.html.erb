@@ -18,26 +18,32 @@
       <% end %>
         <tr>
           <td> Delivery Fee </td>
-          <td> n/a </td>
+          <td></td>
           <td> <%= humanized_money_with_symbol @cart.user.delivery_fee %> </td>
         </tr>
         <tr>
           <td> Environmental Fee </td>
-          <td> n/a </td>
+          <td></td>
           <td> <%= humanized_money_with_symbol @cart.environmental_fee %> </td>
-        <tr>
-        <tr>
-          <td> Taxes </td>
-          <td> n/a </td>
-          <td> <%= humanized_money_with_symbol @cart.environmental_fee %> </td>
-        <tr>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
-
     <tfoot>
+      <tr>
+        <td>Sub-Total</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @cart.subtotal %></td>
+      </tr>
+      <tr>
+        <td>Taxes</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @cart.taxes %></td>
+      </tr>
       <tr>
         <td>Total</td>
         <td></td>
-        <td><%= humanized_money_with_symbol @cart.total + @order.user.delivery_fee %></td>
+        <td><%= humanized_money_with_symbol @cart.total %></td>
+      </tr>
     </tfoot>
   </table>
 

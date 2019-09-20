@@ -50,13 +50,25 @@
           <td> n/a </td>
           <td> <%= humanized_money_with_symbol @order.environmental_fee %> </td>
         <tr>
+        <tr><td></td><td></td><td></td></tr>
     </tbody>
 
     <tfoot>
       <tr>
+        <td>Sub-Total</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @order.subtotal %></td>
+      </tr>
+      <tr>
+        <td>Taxes</td>
+        <td></td>
+        <td><%= humanized_money_with_symbol @order.taxes %></td>
+      </tr>
+      <tr>
         <td>Total</td>
         <td></td>
         <td><%= humanized_money_with_symbol @order.total %></td>
+      </tr>
     </tfoot>
   </table>
 

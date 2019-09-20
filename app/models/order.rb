@@ -51,7 +51,7 @@ class Order < ApplicationRecord
     end
   end
 
-  def total
+  def subtotal
     total = 0
     order_products.each do |order_product|
       total += (order_product.quantity * order_product.product.price)
@@ -61,8 +61,12 @@ class Order < ApplicationRecord
     return total
   end
 
+  def total
+    self.taxes + self.subtotal
+  end
+
   def taxes
-    
+    0.05 * self.subtotal
   end
 
   def email
