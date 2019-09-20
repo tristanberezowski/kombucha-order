@@ -83,7 +83,7 @@ class Order < ApplicationRecord
   def environmental_fee
     total = 0
     order_products.each do |order_product|
-      total += (order_product.quantity * order_product.product.environmental_fee)
+      total += order_product.environmental_fee
     end
     return total
   end

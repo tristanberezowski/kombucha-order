@@ -12,4 +12,8 @@ class OrderProduct < ApplicationRecord
   def name
     "#{quantity}x #{product.selectable.name}"
   end
+
+  def environmental_fee
+    self.product.environmental_fee * quantity
+  end
 end
