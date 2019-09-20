@@ -65,7 +65,7 @@ gem 'spring-commands-rspec', group: :development
 gem 'rspec-rails', '~> 3.6', group: [:development, :test]
 gem 'shoulda-matchers', group: :test
 gem 'capybara-selenium', group: :test
-gem 'chromedriver-helper', group: :test
+gem 'webdrivers', '~>4.0', group: :test
 gem 'simple_form'
 gem 'bullet', group: [:development, :test]
 gem 'factory_bot_rails', group: [:development, :test]

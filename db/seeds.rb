@@ -79,10 +79,7 @@ original = water.flavours.create!(
 
 # Containers
 keg = Container.create!(name: "Keg", volume: 19500)
-bottles = Container.create!(name: "Twelve 375mL Bottles", volume: 12 * 375)
-growler1 = Container.create!(name: "1L Growler", volume: 1000)
-growler2 = Container.create!(name: "2L Growler", volume: 2000)
-growler5 = Container.create!(name: "500mL Growler", volume: 500)
+bottles = Container.create!(name: "Twelve 375mL Bottles", volume: 12 * 375, environmental_fee: Money.new(11 * 12))
 
 
 
@@ -153,40 +150,3 @@ Product.create!(name: "12 Pack of Raspberry Lime bottles", selectable: selection
 
 selection = LiquidSelection.create!(flavour: blue, container: bottles)
 Product.create!(name: "12 Pack of Blue Valentine bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
-
-# 2L Growlers
-
-selection = LiquidSelection.create!(flavour: hawaiian, container: growler2)
-Product.create!(name: "2L Growler of Hawaiian Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: turmeric, container: growler2)
-Product.create!(name: "2L Growler of Turmeric Tonic Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: lady, container: growler2)
-Product.create!(name: "2L Growler of Lady Grey Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: hibiscus, container: growler2)
-Product.create!(name: "2L Growler of Hibiscus Ginger Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: beauty, container: growler2)
-Product.create!(name: "2L Growler of Beauty Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: grapefruit, container: growler2)
-Product.create!(name: "2L Growler of Pink Grapefruit Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: revitalize, container: growler2)
-Product.create!(name: "2L Growler of Revitalize Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: raspberry, container: growler2)
-Product.create!(name: "2L Growler of Raspberry Lime Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-selection = LiquidSelection.create!(flavour: blue, container: growler2)
-Product.create!(name: "2L Growler of Blue Valentine Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(2000))
-
-# 1L Growlers 
-
-selection = LiquidSelection.create!(flavour: beauty, container: growler1)
-Product.create!(name: "1L Growler of Beauty Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(1000))
-
-selection = LiquidSelection.create!(flavour: blue, container: growler1)
-Product.create!(name: "1L Growler of Blue Valentine Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(1000))

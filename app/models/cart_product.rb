@@ -8,4 +8,8 @@ class CartProduct < ApplicationRecord
   }
 
   delegate :price, :name, to: :product
+
+  def environmental_fee
+    self.product.environmental_fee * quantity
+  end
 end

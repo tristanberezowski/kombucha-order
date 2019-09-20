@@ -18,7 +18,7 @@
 main.main-content {
   display: block;
   max-width: $large-screen;
-  margin: 0 auto;
+  margin: 0 $small-spacing;
   padding-bottom: $base-spacing * 2;
 }
 

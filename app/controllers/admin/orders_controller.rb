@@ -8,17 +8,11 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    if @order.payment == nil
-      Payment.new(order: @order)
-    end
   end
 
   def destroy
     @order = Order.find(params[:id])
     @order.order_products.destroy_all
-    if @order.payment
-      @order.payment.destroy
-    end
     if @order.destroy
       redirect_to admin_orders_path, notice: t('orders.destroy.success')
     else

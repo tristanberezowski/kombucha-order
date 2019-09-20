@@ -79,7 +79,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "#total" do
+  describe "#subtotal" do
 
     context "the order has products" do
       let!(:order) { create(:order) }
@@ -87,7 +87,7 @@ RSpec.describe Order, type: :model do
       let!(:order_product) { create(:order_product, order: order, product: product) }
 
       it "sums the products in the order" do
-        expect(order.total).to eq (product.price * order_product.quantity + order.delivery_fee)
+        expect(order.subtotal).to eq (product.price * order_product.quantity + order.delivery_fee + order.environmental_fee)
       end
     end
   end

@@ -31,6 +31,10 @@ class Product < ApplicationRecord
     self.selectable.container
   end
 
+  def environmental_fee
+    self.container.environmental_fee
+  end
+
   def flavour
     self.selectable.flavour
   end

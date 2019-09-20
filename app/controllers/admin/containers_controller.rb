@@ -17,6 +17,6 @@ class Admin::ContainersController < Admin::ApplicationController
   end
 
   def container_params
-    params.require(:container).permit(:name, :volume)
+    params.require(:container).permit(:name, :volume, :environmental_fee)
   end
 end

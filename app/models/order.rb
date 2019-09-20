@@ -6,7 +6,6 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_products
   has_many :products, through: :order_products
-  has_one :payment
 
   after_create :email_receipt
 
@@ -16,15 +15,6 @@ class Order < ApplicationRecord
 
     event :deliver do
       transitions from: :undelivered, to: :delivered
-    end
-  end
-
-  aasm :payment_status, column: :payment_status do
-    state :unpaid, initial: true
-    state :paid
-
-    event :pay do
-      transitions from: :unpaid, to: :paid, guard: :has_payment?
     end
   end
 
@@ -46,10 +36,6 @@ class Order < ApplicationRecord
     MapleRidge
   )
 
-  def payment_partial_path
-    self.paid? ? "payment_details" : "unpaid_form"
-  end
-
   def delivery_date
     make_delivery_date_next_possible(self.shipping_city)
   end
@@ -65,13 +51,22 @@ class Order < ApplicationRecord
     end
   end
 
-  def total
+  def subtotal
     total = 0
     order_products.each do |order_product|
       total += (order_product.quantity * order_product.product.price)
     end
     total += self.delivery_fee
+    total += self.environmental_fee
     return total
+  end
+
+  def total
+    self.taxes + self.subtotal
+  end
+
+  def taxes
+    0.05 * self.subtotal
   end
 
   def email
@@ -91,6 +86,14 @@ class Order < ApplicationRecord
 
   def delivery_fee
     user.delivery_fee
+  end
+
+  def environmental_fee
+    total = 0
+    order_products.each do |order_product|
+      total += order_product.environmental_fee
+    end
+    return total
   end
 
   private
@@ -116,10 +119,6 @@ class Order < ApplicationRecord
 
     # byebug
 
-  end
-
-  def has_payment?
-    self.payment
   end
 
   def product_prices

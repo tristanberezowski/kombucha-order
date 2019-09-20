@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_023118) do
+ActiveRecord::Schema.define(version: 2019_08_31_105033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2019_08_04_023118) do
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
+    t.integer "environmental_fee_cents", default: 0, null: false
+    t.string "environmental_fee_currency", default: "USD", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -153,19 +155,7 @@ ActiveRecord::Schema.define(version: 2019_08_04_023118) do
     t.string "shipping_country"
     t.string "note"
     t.string "delivery_status"
-    t.string "payment_status"
     t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.bigint "order_id"
-    t.string "payee"
-    t.string "contact_information"
-    t.string "payment_method"
-    t.date "payment_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "product_exemptions", force: :cascade do |t|
@@ -224,7 +214,6 @@ ActiveRecord::Schema.define(version: 2019_08_04_023118) do
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "payments", "orders"
   add_foreign_key "product_exemptions", "products"
   add_foreign_key "user_exemptions", "users"
 end

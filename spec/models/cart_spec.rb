@@ -5,11 +5,11 @@ RSpec.describe Cart, type: :model do
   it { should have_many :cart_products }
   it { should have_many :products }
 
-  describe '#total_price' do
+  describe '#subtotal' do
     let(:cart) { create(:cart) }
     let(:products) { create_list(:product, 2, price: Money.new(250)) }
-    let(:result) { cart.total_price }
-    let(:total) { Money.new(500) }
+    let(:result) { cart.subtotal }
+    let(:total) { Money.new(500) + cart.delivery_fee + cart.environmental_fee }
 
 
     context 'when the cart has products' do
@@ -20,12 +20,6 @@ RSpec.describe Cart, type: :model do
 
       it 'should return the summed total of products prices' do
         expect(result).to eq total
-      end
-    end
-
-    context 'when the cart does not have products' do
-      it 'should return 0 money' do
-        expect(result).to eq Money.new(0)
       end
     end
   end
