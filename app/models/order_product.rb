@@ -14,6 +14,6 @@ class OrderProduct < ApplicationRecord
   end
 
   def environmental_fee
-    self.product.environmental_fee * quantity
+    product.environmental_fee * quantity
   end
 end

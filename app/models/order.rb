@@ -61,6 +61,10 @@ class Order < ApplicationRecord
     return total
   end
 
+  def taxes
+    
+  end
+
   def email
     user.email
   end
