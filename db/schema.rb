@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_31_105033) do
+ActiveRecord::Schema.define(version: 2020_01_23_024505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,11 @@ ActiveRecord::Schema.define(version: 2019_08_31_105033) do
   create_table "delivery_exemptions", force: :cascade do |t|
     t.integer "fee_cents", default: 0, null: false
     t.string "fee_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "extra_selections", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -178,6 +183,13 @@ ActiveRecord::Schema.define(version: 2019_08_31_105033) do
     t.string "selectable_type"
     t.bigint "selectable_id"
     t.index ["selectable_type", "selectable_id"], name: "index_products_on_selectable_type_and_selectable_id"
+  end
+
+  create_table "refresh_tokens", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date_created"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_exemptions", force: :cascade do |t|

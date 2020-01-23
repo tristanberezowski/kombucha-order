@@ -212,8 +212,6 @@ GEM
       oauth (= 0.4.7)
       oauth2 (~> 1.4)
       roxml (= 4.0.0)
-    quickbooks-ruby-base (1.6.0)
-      quickbooks-ruby
     rack (2.0.7)
     rack-canonical-host (0.2.3)
       addressable (> 0, < 3)
@@ -402,7 +400,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
-  quickbooks-ruby-base
+  quickbooks-ruby
   rack-canonical-host
   rack-mini-profiler
   rack-timeout

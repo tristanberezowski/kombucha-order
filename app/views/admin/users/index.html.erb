@@ -8,14 +8,14 @@
   <table class="users">
     <thead>
       <th>Email</th>
-      <th>Actions</th>
+      <th>Customer Information</th>
     </thead>
 
     <tbody>
       <% @users.each do |user| %>
         <tr>
           <td><%= user.email %></td>
-          <td></td>
+          <td><%=  %></td>
         </tr>
       <% end %>
     </tbody>

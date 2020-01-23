@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :invites, only: [:index, :create, :new, :edit]
-    resource :dashboard, only: [ :show ]
+    resource :dashboard, only: [ :show ], controller: 'dashboard'
     resources :products
     resources :liquids, only: [
       :index, :new, :create
@@ -40,5 +40,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index]
     resources :user_exemptions, only: [:update]
     resources :orders, only: [:show, :index, :destroy]
+    resources :refresh_tokens, only: [:new, :create]
   end
 end
