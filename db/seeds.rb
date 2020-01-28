@@ -2,6 +2,7 @@
 InviteExemption.destroy_all
 Invite.destroy_all
 Admin.destroy_all
+CartProduct.destroy_all
 Product.destroy_all
 LiquidSelection.destroy_all
 Container.destroy_all
