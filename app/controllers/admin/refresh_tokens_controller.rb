@@ -12,7 +12,8 @@ class Admin::RefreshTokensController < Admin::ApplicationController
         admin_dashboard_path,
         notice: t('tokens.create.success')
       )
-
+    else
+      render :new
     end
 
   end
@@ -20,7 +21,9 @@ class Admin::RefreshTokensController < Admin::ApplicationController
   private
 
   token_params do
-    
+    params.require(:refresh_token).permit(
+      :name
+    )
   end
 
 end

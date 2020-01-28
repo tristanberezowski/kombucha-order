@@ -1,0 +1,4 @@
+en:
+  tokens:
+    create:
+      success: 'Token was saved succesfully'
