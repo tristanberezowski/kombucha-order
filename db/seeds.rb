@@ -1,6 +1,7 @@
 #destroy tables
 InviteExemption.destroy_all
 Invite.destroy_all
+RealmId.destroy_all
 Admin.destroy_all
 CartProduct.destroy_all
 Product.destroy_all
@@ -8,6 +9,9 @@ LiquidSelection.destroy_all
 Container.destroy_all
 Flavour.destroy_all
 Liquid.destroy_all
+
+#Realm Id
+FactoryBot.create(:realm_id, name: '4620816365019076980')
 
 # Admins
 FactoryBot.create(:admin, email: 'admin@example.com', password: 'password')
