@@ -20,7 +20,7 @@ class Admin::RefreshTokensController < Admin::ApplicationController
 
   private
 
-  token_params do
+  def token_params
     params.require(:refresh_token).permit(
       :name
     )
