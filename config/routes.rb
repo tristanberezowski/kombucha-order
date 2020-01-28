@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'quickbooks/index'
+  end
   devise_for :admins
   authenticated :admin do
     root 'admin/dashboard#show', as: :authenticated_root
@@ -41,5 +44,6 @@ Rails.application.routes.draw do
     resources :user_exemptions, only: [:update]
     resources :orders, only: [:show, :index, :destroy]
     resources :refresh_tokens, only: [:new, :create]
+    get '/quickbooks', to: 'quickbooks#index'
   end
 end
