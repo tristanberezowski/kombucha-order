@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_211744) do
+ActiveRecord::Schema.define(version: 2020_01_28_212735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,12 @@ ActiveRecord::Schema.define(version: 2020_01_28_211744) do
     t.string "selectable_type"
     t.bigint "selectable_id"
     t.index ["selectable_type", "selectable_id"], name: "index_products_on_selectable_type_and_selectable_id"
+  end
+
+  create_table "realm_ids", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "refresh_tokens", force: :cascade do |t|
