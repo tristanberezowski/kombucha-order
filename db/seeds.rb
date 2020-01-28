@@ -2,6 +2,7 @@
 InviteExemption.destroy_all
 Invite.destroy_all
 RealmId.destroy_all
+RefreshToken.destroy_all
 Admin.destroy_all
 CartProduct.destroy_all
 Product.destroy_all
@@ -12,6 +13,9 @@ Liquid.destroy_all
 
 #Realm Id
 FactoryBot.create(:realm_id, name: '4620816365019076980')
+
+#Refresh Token
+FactoryBot.create(:refresh_token, name: 'AB11588972590vzRVK8ywJumry5yVK4YvDTstKvWGRfHjqrlb8')
 
 # Admins
 FactoryBot.create(:admin, email: 'admin@example.com', password: 'password')
