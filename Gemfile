@@ -52,7 +52,6 @@ group :test do
   gem "launchy"
   gem "simplecov", require: false
   gem "timecop"
-  gem "webmock"
   gem "database_cleaner"
 end
 

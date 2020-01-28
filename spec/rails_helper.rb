@@ -62,10 +62,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  WebMock.disable_net_connect!(                                                    
-    allow_localhost: true,                                                     
-    allow: 'chromedriver.storage.googleapis.com'                                   
-  ) 
 end
 
 ActiveRecord::Migration.maintain_test_schema!
