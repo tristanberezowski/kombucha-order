@@ -1,6 +1,10 @@
 class Admin::QuickbooksController < Admin::ApplicationController
   def index
-    response = Faraday.get 'https://reqres.in/api/users'
-    @user_info = response.body
+    response = Faraday.post('https://sandbox.api.intuit.com/oauth2/v1/tokens/bearer?grant_type=refresh_token&refresh_token=AB11588981505UJYDKNhT4ZinIKQBtMbRxQusyBlCxcMiNkh69') do |req|
+      req.headers['Authorization'] = "Bearer eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..P0NjlmTJuJ_UhzVE1kK9nw.OqN5YZHmVj-o4Y5etR_VzBnwrfW45EWps0QnelSB4ax-o5P5LE0vA5GAGN7oviHHGFn5JHmOxa3ShVY9MFgSmcUlZfC9GUgZU9oYvJ4gHZvKdX1SOhEmePu6_yVRP9Q1qaXPEcV5Q1A5-TOrpN8Ukcuh3og95e0c1DIXk4MHJ_AmoE01-saDeNwZSXLFjCAFUjL-xzInR20DdWss7b1_ytqeSnZncXr3mwraFb4BGeFVD0wDa1ZnASgZdeA3L7WbULqSRP39AmeFmEkODoo8rUOdwOceKAB8jc5ahpp3ng3NusUE5CfuTOsgT6TrGSEl6sY0osIlqlKrynW1WmWVFJsnTGS3Y449Ii33qzlrXvf32iOE9fOoa5RHnpRT6fxJj67v_FkpOO5nbf72DsJCo0nVfdmZX_AiFeDWpgfSFactGewFpCBWKZw5_slNCxviGmLOfBLu0sTk2F089XLjXlqNZVTzBjUhBjZxV_cD75iyep2mQ-6APJ9rl2WCa_SDNR6VLQzmLB6DUQTNwxZc2iLrcaVj2FBJow_td-ORvl0rVTpqOA221JrqPJwL90dHPKQYUqhhq1gN2A75KSFlyMBpUo-x_8bK-jucXl7Zs7aTrhX9NwGraP_FzvIV4NzVmdlJ8FAvwBtN-7L7CCEXhEbuPwLk6-9bZeCg7WhuiV7vrOtqqX9qGjdviAzLmtPsITecDQJ7_RUT8JyHSNoGhaOnaRvwEg6L0ekvikS8bnFQZ5nWiW-uiGEdEeQKQOWL2rme7uk-QnuwGhQXihgSd3k59xWMskOY07GjWK9mcGWHn45ngQ3jmrjL8fGttnb624AhpXtu5KQ9GZ5AxPDpdGeHp0wU91Bf9blrBBk3z0YpyMH_o5hVJBdOIG0rr3ZqxcndRgoMXiNgI0EjT_V2zA.sijLwL_JhM9SZMtv4PmAgg"
+      req.headers['Accept'] = 'application/json',
+      req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    end
+    @user_info = response
   end
 end
