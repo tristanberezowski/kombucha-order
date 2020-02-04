@@ -1,7 +1,7 @@
 <section class="admin-flavours-index">
   <% @flavours.each do |flavour| %>
     <article>
-      <p><strong><%= flavour.name %><%= " " %><%= flavour.liquid.name %></strong></p>   
+      <a href="/admin/flavours/<%= flavour.id %>/edit"><strong><%= flavour.name %><%= " " %><%= flavour.liquid.name %></strong></a>   
       <p><%= flavour.description %></p>
     </article>
     <hr />

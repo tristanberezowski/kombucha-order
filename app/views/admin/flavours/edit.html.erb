@@ -1,0 +1,12 @@
+<section class="admin-flavours-edit">
+  <%= simple_form_for [:admin, @flavour] do |f| %>
+  <section class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+  </section>
+
+  <section class="form-links">
+    <%= f.submit "Save" %>
+  </section>
+<% end %>
+</section>

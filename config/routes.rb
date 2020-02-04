@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       :index, :new, :create
     ]
     resources :flavours, only: [
-      :index, :new, :create
+      :index, :new, :create, :edit, :update
     ]
     resources :containers, only: [
       :index, :new, :create

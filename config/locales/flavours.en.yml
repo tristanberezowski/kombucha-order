@@ -2,3 +2,5 @@ en:
   flavours:
     create:
       success: "Flavour created successfully"
+    update:
+      success: "Flavour updated successfully"
