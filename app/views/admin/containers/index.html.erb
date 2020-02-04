@@ -8,7 +8,7 @@
     <tbody>
       <% @containers.each do |container| %>
         <tr>
-          <td><%= container.name %></td>
+          <td><a href="/admin/containers/<%= container.id%>/edit"><%= container.name %></td>
           <td><%= container.volume %>mL</td>
           <td><%= humanized_money_with_symbol container.environmental_fee %></td>
         </tr>

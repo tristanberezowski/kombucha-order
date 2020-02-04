@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       :index, :new, :create, :edit, :update
     ]
     resources :containers, only: [
-      :index, :new, :create
+      :index, :new, :create, :edit, :update
     ]
     resources :users, only: [:show, :index]
     resources :user_exemptions, only: [:update]

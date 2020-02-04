@@ -2,3 +2,5 @@ en:
   containers:
     create:
       success: 'Container created successfully.'
+    update:
+      success: 'Container updated successfully'

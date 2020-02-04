@@ -3,6 +3,20 @@ class Admin::ContainersController < Admin::ApplicationController
     @containers = Container.all
   end
 
+  def edit
+    @container = Container.find(params[:id])
+  end
+
+  def update
+    @container = Container.find(params[:id])
+    if @container.update(container_params)
+      redirect_to admin_containers_path, notice: t('containers.update.success')
+    else
+      render :update
+    end
+
+  end
+
   def new
     @container = Container.new
   end

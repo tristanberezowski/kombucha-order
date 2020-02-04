@@ -7,7 +7,7 @@ feature 'Admin updates products' do
     let(:product) { create(:product) }
 
     before do
-      sign_in_admin admin
+      sign_in_admin
     end
 
     scenario 'from the admin product page' do
