@@ -2,7 +2,7 @@
   <section class="form-inputs">
     <%= f.input :email %>
 
-    <section>
+    <section class="delivery-exemption">
       <%= f.simple_fields_for :delivery_exemptions do |ff| %>
         <%= render 'delivery_exemption_fields', f: ff %>
       <% end %>
@@ -10,7 +10,8 @@
       <%= link_to_add_association(
         'Add Delivery exemption',
         f,
-        :delivery_exemptions
+        :delivery_exemptions,
+        class: "primary-button"
       ) %>
     </section>
   </section>
