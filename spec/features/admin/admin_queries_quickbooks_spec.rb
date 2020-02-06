@@ -9,7 +9,6 @@ feature 'Admin queries quickbooks' do
   scenario 'from the dashboard' do
     visit admin_dashboard_path
     click_on 'Query Quickbooks'
-    save_and_open_page
   end
 
 end

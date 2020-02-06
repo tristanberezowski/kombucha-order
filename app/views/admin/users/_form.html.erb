@@ -1,0 +1,15 @@
+<%= simple_form_for [:admin, user] do |f| %>
+  <section class="form-inputs">
+    <%= f.input :company_name, label: "Company Name" %>
+    <%= f.input :name, label: "Name" %>
+    <%= f.input :email, label: "Email" %>
+    <%= f.input :shipping_address, label: "Shipping Address" %>
+    <%= f.input :shipping_postal, label: "Shipping Postal Code" %>
+    <%= f.input :shipping_city, label: "Shipping City" %>
+    <%= f.input :shipping_province, label: "Shipping Province" %>
+  </section>
+
+  <section class="form-links">
+    <%= f.submit %>
+  </section>
+<% end %>

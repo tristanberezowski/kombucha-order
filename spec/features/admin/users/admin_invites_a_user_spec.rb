@@ -23,7 +23,7 @@ feature 'Admin invites a user' do
 
     fill_in 'Email', with: FFaker::Internet.email
     click_on 'Add Delivery exemption'
-    fill_in 'New cost', with: "30.00"
+    fill_in 'Add unique delivery cost (optional)', with: "30.00"
 
     click_on 'Create Invite'
 

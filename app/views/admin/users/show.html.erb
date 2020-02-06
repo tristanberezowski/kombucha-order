@@ -1,6 +1,29 @@
-<p>User: <%= @user.email %></p>
+<section class="admin-users-show">
+  <a href="/admin/users/<%= @user.id %>/edit" class='primary-button'>Edit User</a>
+  <table class="user-info">
+    <thead>
+      <th>Company Name</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Province</th>
+      <th>Postal</th>
+    </thead>
 
-<%= form_tag '/user_exemptions' do %>
+    <tbody>
+      <tr>
+        <td><%= @user.company_name %></td>
+        <td><%= @user.name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.shipping_address %></td>
+        <td><%= @user.shipping_city %></td>
+        <td><%= @user.shipping_province %></td>
+        <td><%= @user.shipping_postal %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= form_tag '/user_exemptions' do %>
 
     <div class="form-group">
       Delivery Fee: <%= text_field_tag :delivery_fee %>
@@ -12,3 +35,5 @@
 
     <%= submit_tag 'Update.', class: 'btn btn-primary' %>
   <% end %> 
+
+  </section>
