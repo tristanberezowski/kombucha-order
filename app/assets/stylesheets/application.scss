@@ -14,7 +14,7 @@
 @import "orders";
 @import "users";
 @import "flashes";
-@import "misc";
+@import "exemptions";
 
 main.main-content {
   display: block;
@@ -26,4 +26,9 @@ main.main-content {
 .description {
   font-size: 0.5em;
   font-style: italic;
+}
+
+div.row{
+  display: flex;
+  justify-content: space-evenly;
 }

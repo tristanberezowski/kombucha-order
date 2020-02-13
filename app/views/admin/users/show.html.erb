@@ -5,17 +5,23 @@
       <th>Company Name</th>
       <th>Name</th>
       <th>Email</th>
+    </thead>
+
+    <tbody>
+      <tr>
+          <td><%= @user.company_name %></td>
+          <td><%= @user.name %></td>
+          <td><%= @user.email %></td>
+      </tr>
+    </tbody>
+    <thead>
       <th>Address</th>
       <th>City</th>
       <th>Province</th>
       <th>Postal</th>
     </thead>
-
     <tbody>
       <tr>
-        <td><%= @user.company_name %></td>
-        <td><%= @user.name %></td>
-        <td><%= @user.email %></td>
         <td><%= @user.shipping_address %></td>
         <td><%= @user.shipping_city %></td>
         <td><%= @user.shipping_province %></td>
@@ -25,8 +31,10 @@
   </table>
   
   <% @user.exemptions.each do |user_exemption| %>
-    <h5><%= user_exemption.information %></h5>
-
+    <div class="row">
+      <h5><%= user_exemption.information %></h5>
+      <a href="/admin/user_exemption/<%= user_exemption.id%>">Edit</a>
+    </div>
   <% end %>
 
   </section>
