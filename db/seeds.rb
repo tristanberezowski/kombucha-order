@@ -27,8 +27,15 @@ FactoryBot.create(:access_token, name: 'a')
 FactoryBot.create(:admin, email: 'admin@example.com', password: 'password')
 
 #Users
-FactoryBot.create(:user, name: 'User One', email: 'user1@example.com', password: 'password')
-FactoryBot.create(:user, name: 'User Two', email: 'user2@example.com', password: 'password')
+user1 = FactoryBot.create(:user, name: 'User One', email: 'user1@example.com', password: 'password')
+user2 = FactoryBot.create(:user, name: 'User Two', email: 'user2@example.com', password: 'password')
+
+#User Exemptions
+delivery1 = DeliveryExemption.create!(fee: 20)
+UserExemption.create!(user: user1, exemptable: delivery1)
+delivery2 = DeliveryExemption.create!(fee: 30)
+UserExemption.create!(user: user2, exemptable: delivery2)
+
 
 # Liquids
 kombucha = Liquid.create!(name: "Kombucha")

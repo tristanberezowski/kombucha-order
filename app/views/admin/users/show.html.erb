@@ -23,17 +23,10 @@
       </tr>
     </tbody>
   </table>
-  <%= form_tag '/user_exemptions' do %>
+  
+  <% @user.exemptions.each do |user_exemption| %>
+    <h5><%= user_exemption.information %></h5>
 
-    <div class="form-group">
-      Delivery Fee: <%= text_field_tag :delivery_fee %>
-    </div>
-
-    <div class="form-group">
-      Minimum Price of Order: <%= text_field_tag :order_minimum %>
-    </div>
-
-    <%= submit_tag 'Update.', class: 'btn btn-primary' %>
-  <% end %> 
+  <% end %>
 
   </section>

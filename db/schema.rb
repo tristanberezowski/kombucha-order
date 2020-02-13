@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_235403) do
+ActiveRecord::Schema.define(version: 2020_02_13_012841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,8 +206,6 @@ ActiveRecord::Schema.define(version: 2020_02_05_235403) do
   end
 
   create_table "user_exemptions", force: :cascade do |t|
-    t.float "delivery_fee"
-    t.float "order_minimum"
     t.bigint "user_id"
     t.string "exemptable_type"
     t.bigint "exemptable_id"
