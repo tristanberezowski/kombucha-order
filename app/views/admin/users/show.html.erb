@@ -33,7 +33,7 @@
   <% @user.exemptions.each do |user_exemption| %>
     <div class="row">
       <h5><%= user_exemption.information %></h5>
-      <a href="/admin/user_exemption/<%= user_exemption.id%>">Edit</a>
+      <a href="/admin/user_exemptions/<%= user_exemption.id%>/edit">Edit</a>
     </div>
   <% end %>
 

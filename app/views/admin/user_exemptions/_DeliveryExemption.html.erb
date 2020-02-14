@@ -1,0 +1,8 @@
+<%= simple_form_for [:admin, user_exemption] do |f| %>
+  <section class="form-inputs">
+    <%= f.input :fee, label: "Delivery Fee" %>
+  </section>
+  <section>
+    <%= f.submit %>
+  </section>
+<% end %>

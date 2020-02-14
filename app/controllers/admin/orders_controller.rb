@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < Admin::ApplicationController
   def index
     @orders = Order.all
     @case = Container.find_by(volume: 12 * 375)

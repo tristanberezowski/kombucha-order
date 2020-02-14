@@ -2,3 +2,4 @@ en:
   users:
     update:
       success: "User was updated successfully"
+      fail: "ERROR: User could not be updated"

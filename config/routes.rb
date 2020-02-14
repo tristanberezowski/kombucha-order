@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'user_exemptions/edit'
+    get 'user_exemptions/update'
+  end
+  namespace :admin do
     get 'quickbooks/index'
   end
   devise_for :admins
@@ -41,7 +45,8 @@ Rails.application.routes.draw do
       :index, :new, :create, :edit, :update
     ]
     resources :users, only: [:show, :index, :edit, :update]
-    resources :user_exemptions, only: [:update]
+    resources :user_exemptions, only: [:edit]
+    resources :delivery_exemptions, only: [:update]
     resources :orders, only: [:show, :index, :destroy]
     resources :refresh_tokens, only: [:new, :create]
     get '/quickbooks', to: 'quickbooks#index'
