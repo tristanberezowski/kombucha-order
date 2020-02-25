@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     resources :delivery_exemptions, only: [:update]
     resources :orders, only: [:show, :index, :destroy]
     resources :refresh_tokens, only: [:new, :create]
+    resources :liquid_prices, only: [:index, :edit, :update]
     get '/quickbooks', to: 'quickbooks#index'
   end
 end

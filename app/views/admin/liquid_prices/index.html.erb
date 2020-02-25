@@ -1,0 +1,5 @@
+<section class="index-admin-liquid-prices">
+  <%= @liquid_prices.each do |liquid_price| %>
+    <a href="/admin/liquid_prices/<%= liquid_price.id%>/edit"><%= liquid_price.container.name%> of <%= liquid_price.liquid.name %>: <%= liquid_price.price %></a>
+  <% end %>
+</section>

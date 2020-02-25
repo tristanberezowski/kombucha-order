@@ -1,0 +1,4 @@
+en:
+  liquid_prices:
+    update:
+      success: 'Liquid Price updated successfully'

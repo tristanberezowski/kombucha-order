@@ -1,0 +1,2 @@
+class LiquidPricesController < ApplicationController
+end
