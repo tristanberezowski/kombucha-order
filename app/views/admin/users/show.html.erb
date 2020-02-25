@@ -36,5 +36,11 @@
       <a href="/admin/user_exemptions/<%= user_exemption.id%>/edit">Edit</a>
     </div>
   <% end %>
+  <% @user.liquid_prices.each do |liquid_price| %>
+    <div class="row">
+      <h5><%= "#{liquid_price.container.name} of #{liquid_price.liquid.name}: #{humanized_money_with_symbol(liquid_price.price)}" %></h5>
+      <a href="/admin/liquid_prices/<%= liquid_price.id%>/edit">Edit</a>
+    </div>
+  <% end %>
 
   </section>
