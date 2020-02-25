@@ -7,6 +7,7 @@ feature 'Admin destroys an order' do
     before do
         sign_in_admin
         create(:order_product, order: order, product: product)
+        create(:liquid_price, container: product.container, liquid: product.liquid)
     end
     
     scenario 'From show order page' do

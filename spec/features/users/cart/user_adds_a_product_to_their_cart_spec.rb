@@ -4,6 +4,7 @@ feature 'User adds a product to their cart' do
   let!(:product) { create(:product) }
 
   before do
+    create(:liquid_price, container: product.container, liquid: product.liquid)
     sign_in_user
   end
 

@@ -13,16 +13,19 @@ RSpec.describe Product, type: :model do
 
   describe "#price_for" do
     let(:user) {create(:user)}
-    let(:product) { create(:product, price: Money.new(500)) }
-    let!(:product_exemption) { 
-      create(:product_exemption, product: product, fee: Money.new(250))
-    }
-    let!(:user_exemption) {
-      create(:user_exemption, user: user, exemptable: product_exemption)
-    }
-    let(:result) { product.price_for(user) }
-    it "should return the price exemption fee" do
-      expect(result).to eq(product_exemption.fee)
+    let(:user2) {create(:user)}
+    let(:container) {create(:container)}
+    let(:liquid) {create(:liquid)}
+    let!(:liquid_price) { create(:liquid_price, container: container, liquid: liquid) }
+    let!(:liquid_price_for_user) { create(:liquid_price, container: container, liquid: liquid, user: user)}
+    let(:flavour) { create(:flavour, liquid: liquid)}
+    let(:liquid_selection) { create(:liquid_selection, flavour: flavour, container: container)}
+    let(:product) { create(:product, selectable: liquid_selection) }
+    let(:result_not_default) { product.price_for(user) }
+    let(:result_default) { product.price_for(user2) }
+    it "should return the user specific price" do
+      expect(result_not_default).to eq(liquid_price_for_user.price)
+      expect(result_default).to eq(liquid_price.price)
     end
 
   end

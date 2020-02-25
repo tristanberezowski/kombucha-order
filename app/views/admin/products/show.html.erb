@@ -5,6 +5,6 @@
   <%= link_to 'Delete', admin_product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
   <p>
     <strong>Price:</strong>
-    <%= humanized_money_with_symbol @product.price %>
+    <%= humanized_money_with_symbol @product.price_for(nil) %>
   </p>
 </section>

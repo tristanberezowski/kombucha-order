@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_012841) do
+ActiveRecord::Schema.define(version: 2020_02_20_010431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,19 @@ ActiveRecord::Schema.define(version: 2020_02_13_012841) do
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
+  create_table "liquid_prices", force: :cascade do |t|
+    t.bigint "liquid_id"
+    t.bigint "container_id"
+    t.bigint "user_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.bigint "invite_id"
+    t.index ["container_id"], name: "index_liquid_prices_on_container_id"
+    t.index ["invite_id"], name: "index_liquid_prices_on_invite_id"
+    t.index ["liquid_id"], name: "index_liquid_prices_on_liquid_id"
+    t.index ["user_id"], name: "index_liquid_prices_on_user_id"
+  end
+
   create_table "liquid_selections", force: :cascade do |t|
     t.bigint "flavour_id"
     t.bigint "container_id"
@@ -185,8 +198,6 @@ ActiveRecord::Schema.define(version: 2020_02_13_012841) do
     t.boolean "purchasable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
     t.string "selectable_type"
     t.bigint "selectable_id"
     t.index ["selectable_type", "selectable_id"], name: "index_products_on_selectable_type_and_selectable_id"
@@ -238,6 +249,10 @@ ActiveRecord::Schema.define(version: 2020_02_13_012841) do
   add_foreign_key "invite_exemptions", "invites"
   add_foreign_key "invites", "admins"
   add_foreign_key "invites", "users"
+  add_foreign_key "liquid_prices", "containers"
+  add_foreign_key "liquid_prices", "invites"
+  add_foreign_key "liquid_prices", "liquids"
+  add_foreign_key "liquid_prices", "users"
   add_foreign_key "liquid_selections", "containers"
   add_foreign_key "liquid_selections", "flavours"
   add_foreign_key "order_products", "orders"

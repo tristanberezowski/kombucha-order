@@ -5,13 +5,15 @@ feature 'User creates an order' do
   let(:growler) { create(:growler) }
   let!(:selection) { create(:liquid_selection, container: growler) }
   let!(:second_selection) { create(:liquid_selection, container: keg) }
-  let!(:product) { create(:product, price: Money.new(500), selectable: selection) }
+  let!(:product) { create(:product, selectable: selection) }
   let!(:second_product) { 
-    create(:product, price: Money.new(500), selectable: second_selection) 
+    create(:product, selectable: second_selection) 
   }
   let(:city) { Order::VALID_CITIES.sample }
   let(:email_result) { Mailgun::Client.deliveries.first[:from] }
   before do
+    create(:liquid_price, container: product.container, liquid: product.liquid, price: Money.new(500))
+    create(:liquid_price, container: second_product.container, liquid: second_product.liquid, price: Money.new(500))
     sign_in_user
   end
 

@@ -7,6 +7,7 @@ feature 'Admin updates products' do
     let(:product) { create(:product) }
 
     before do
+      create(:liquid_price, container: product.container, liquid: product.liquid)
       sign_in_admin
     end
 
@@ -16,7 +17,6 @@ feature 'Admin updates products' do
       click_link 'Edit'
 
       fill_in 'Name', with: 'Kombucha 1L Growler'
-      fill_in 'Price', with: 42.50
 
       click_on 'Update Product'
 

@@ -3,6 +3,6 @@ FactoryBot.define do
     order factory: :order
     product factory: :product
     quantity { rand(1..10) }
-    price { Money.new(0) }
+    price { Money.new(5) }
   end
 end

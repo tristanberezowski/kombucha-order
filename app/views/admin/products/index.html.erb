@@ -22,7 +22,7 @@
       <% @products.each do |product|%>
         <tr>
           <td><a href="/admin/products/<%= product.id %>"><strong><%= product.name %></strong></a></td>
-          <td><%= humanized_money_with_symbol product.price %></td>
+          <td><%= humanized_money_with_symbol product.price_for(current_user) %></td>
         </tr>
       <% end %>
     </tbody>

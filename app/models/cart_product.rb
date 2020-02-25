@@ -7,7 +7,11 @@ class CartProduct < ApplicationRecord
     greater_than_or_equal_to: 1
   }
 
-  delegate :price, :name, to: :product
+  delegate :name, to: :product
+
+  def price
+    product.price_for(cart.user)
+  end
 
   def environmental_fee
     self.product.environmental_fee * quantity

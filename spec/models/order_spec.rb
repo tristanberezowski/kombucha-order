@@ -83,11 +83,12 @@ RSpec.describe Order, type: :model do
 
     context "the order has products" do
       let!(:order) { create(:order) }
-      let!(:product) { create(:product, price: 2) }
-      let!(:order_product) { create(:order_product, order: order, product: product) }
+      let!(:product) { create(:product) }
+      let!(:liquid_price) { create(:liquid_price, liquid: product.liquid, container: product.container)}
+      let!(:order_product) { create(:order_product, order: order, product: product, price: Money.new(2)) }
 
       it "sums the products in the order" do
-        expect(order.subtotal).to eq (product.price * order_product.quantity + order.delivery_fee + order.environmental_fee)
+        expect(order.subtotal).to eq (order_product.price * order_product.quantity + order.delivery_fee + order.environmental_fee)
       end
     end
   end

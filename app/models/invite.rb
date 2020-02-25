@@ -13,6 +13,7 @@ class Invite < ApplicationRecord
     through: :invite_exemptions,
     source: :exemptable,
     source_type: 'ProductExemption'
+  has_many :liquid_prices
 
   validates_presence_of :email
 
@@ -43,6 +44,7 @@ class Invite < ApplicationRecord
   def create_user_exemptions
     user.delivery_exemptions = delivery_exemptions
     user.product_exemptions = product_exemptions
+    user.liquid_prices = liquid_prices
   end
 
   def generate_token

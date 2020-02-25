@@ -113,66 +113,66 @@ bottles = Container.create!(name: "Twelve 375mL Bottles", volume: 12 * 375, envi
 
 # Kegs
 selection = LiquidSelection.create!(flavour: original, container: keg)
-Product.create!(name: "Keg of Sparkling Water", selectable: selection, rentable: false, purchasable: true, price: Money.new(3500))
+Product.create!(name: "Keg of Sparkling Water", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: bellini, container: keg)
-Product.create!(name: "Keg of Bellini Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Bellini Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: turmeric, container: keg)
-Product.create!(name: "Keg of Turmeric Tonic Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Turmeric Tonic Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: lady, container: keg)
-Product.create!(name: "Keg of Lady Grey Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Lady Grey Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: hibiscus, container: keg)
-Product.create!(name: "Keg of Hibiscus Ginger Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Hibiscus Ginger Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: beauty, container: keg)
-Product.create!(name: "Keg of Beauty Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Beauty Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: revitalize, container: keg)
-Product.create!(name: "Keg of Revitalize Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Revitalize Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: cran, container: keg)
-Product.create!(name: "Keg of Cran-Baby Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Cran-Baby Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: grapefruit, container: keg)
-Product.create!(name: "Keg of Pink Grapefruit Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Pink Grapefruit Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: blue, container: keg)
-Product.create!(name: "Keg of Blue Valentine Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Blue Valentine Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: fuji, container: keg)
-Product.create!(name: "Keg of Fuji Apple Kombucha", selectable: selection, rentable: false, purchasable: true, price: Money.new(11000))
+Product.create!(name: "Keg of Fuji Apple Kombucha", selectable: selection, rentable: false, purchasable: true)
 
 # Bottles
 
 selection = LiquidSelection.create!(flavour: mojito, container: bottles)
-Product.create!(name: "12 Pack of Mojito bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Mojito bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: hawaiian, container: bottles)
-Product.create!(name: "12 Pack of Hawaiian bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Hawaiian bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: turmeric, container: bottles)
-Product.create!(name: "12 Pack of Turmeric Tonic bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Turmeric Tonic bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: lady, container: bottles)
-Product.create!(name: "12 Pack of Lady Grey bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Lady Grey bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: hibiscus, container: bottles)
-Product.create!(name: "12 Pack of Hibiscus Ginger bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Hibiscus Ginger bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: beauty, container: bottles)
-Product.create!(name: "12 Pack of Beauty bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Beauty bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: grapefruit, container: bottles)
-Product.create!(name: "12 Pack of Pink Grapefruit bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Pink Grapefruit bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: revitalize, container: bottles)
-Product.create!(name: "12 Pack of Revitalize bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Revitalize bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: raspberry, container: bottles)
-Product.create!(name: "12 Pack of Raspberry Lime bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Raspberry Lime bottles", selectable: selection, rentable: false, purchasable: true)
 
 selection = LiquidSelection.create!(flavour: blue, container: bottles)
-Product.create!(name: "12 Pack of Blue Valentine bottles", selectable: selection, rentable: false, purchasable: true, price: Money.new(325 * 12))
+Product.create!(name: "12 Pack of Blue Valentine bottles", selectable: selection, rentable: false, purchasable: true)

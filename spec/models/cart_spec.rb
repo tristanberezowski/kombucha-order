@@ -7,7 +7,9 @@ RSpec.describe Cart, type: :model do
 
   describe '#subtotal' do
     let(:cart) { create(:cart) }
-    let(:products) { create_list(:product, 2, price: Money.new(250)) }
+    let(:products) { create_list(:product, 2) }
+    let!(:liquid_price) { create(:liquid_price, price: Money.new(250), container: products.first.container, liquid: products.first.liquid)}
+    let!(:liquid_price2) { create(:liquid_price, price: Money.new(250), container: products.last.container, liquid: products.last.liquid)}
     let(:result) { cart.subtotal }
     let(:total) { Money.new(500) + cart.delivery_fee + cart.environmental_fee }
 

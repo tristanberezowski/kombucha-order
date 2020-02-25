@@ -7,7 +7,7 @@ class Cart < ApplicationRecord
   def subtotal
     total = 0
     cart_products.each do |cart_product|
-      total += cart_product.quantity * cart_product.product.price
+      total += cart_product.quantity * cart_product.product.price_for(user)
     end
     total += self.delivery_fee
     total += self.environmental_fee

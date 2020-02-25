@@ -10,8 +10,6 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :selectable
 
-  monetize :price_cents
-
   def build_selectable(type, attributes={})
     if valid_type?(type)
       self.selectable = type.constantize.new(attributes)
@@ -19,12 +17,15 @@ class Product < ApplicationRecord
   end
 
   def price_for user
-    #if it has a product exemption for current user, show that price
+    #if user has a liquid price, use that. Otherwise default price
     if user == nil
-      return self.price
+      return LiquidPrice.find_by(user: nil, container: self.container, liquid: self.liquid).price 
     end
-    product_exemption = user.product_exemptions.where(product: self).first
-    product_exemption ? product_exemption.fee : self.price
+    user_price = LiquidPrice.find_by(user: user, container: self.container, liquid: self.liquid)
+    if user_price == nil
+      return LiquidPrice.find_by(user: nil, container: self.container, liquid: self.liquid).price
+    end
+    return user_price.price
   end
 
   def container
@@ -38,6 +39,10 @@ class Product < ApplicationRecord
   def flavour
     self.selectable.flavour
   end
+
+  def liquid
+    self.selectable.flavour.liquid
+  end  
 
   private
 
