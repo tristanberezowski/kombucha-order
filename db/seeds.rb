@@ -1,4 +1,5 @@
 #destroy tables
+LiquidPrice.destroy_all
 InviteExemption.destroy_all
 Invite.destroy_all
 RealmId.destroy_all
@@ -35,7 +36,6 @@ delivery1 = DeliveryExemption.create!(fee: 20)
 UserExemption.create!(user: user1, exemptable: delivery1)
 delivery2 = DeliveryExemption.create!(fee: 30)
 UserExemption.create!(user: user2, exemptable: delivery2)
-
 
 # Liquids
 kombucha = Liquid.create!(name: "Kombucha")
@@ -107,6 +107,10 @@ original = water.flavours.create!(
 keg = Container.create!(name: "Keg", volume: 19500)
 bottles = Container.create!(name: "Twelve 375mL Bottles", volume: 12 * 375, environmental_fee: Money.new(11 * 12))
 
+# Liquid Prices
+LiquidPrice.create!(container: keg, liquid: water, price: Money.new(3500))
+LiquidPrice.create!(container: bottles, liquid: kombucha, price: Money.new(3500))
+LiquidPrice.create!(container: keg, liquid: kombucha, price: Money.new(325 * 12))
 
 
 # Products

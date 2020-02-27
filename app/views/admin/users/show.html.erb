@@ -36,6 +36,7 @@
       <a href="/admin/user_exemptions/<%= user_exemption.id%>/edit">Edit</a>
     </div>
   <% end %>
+  <%= link_to "Create New Liquid Price For This User", new_admin_liquid_price_path(:userid => @user.id) %>
   <% @user.liquid_prices.each do |liquid_price| %>
     <div class="row">
       <h5><%= "#{liquid_price.container.name} of #{liquid_price.liquid.name}: #{humanized_money_with_symbol(liquid_price.price)}" %></h5>

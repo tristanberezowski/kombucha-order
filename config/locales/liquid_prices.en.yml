@@ -2,3 +2,5 @@ en:
   liquid_prices:
     update:
       success: 'Liquid Price updated successfully'
+    create:
+      success: 'Liquid Price created successfully'

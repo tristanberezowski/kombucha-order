@@ -1,0 +1,13 @@
+<%= simple_form_for [:admin, liquid_price] do |f| %>
+  <section class="form-inputs">
+    <%= f.input :price %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.input :liquid_id, collection: @liquids %>
+    <%= f.input :container_id, collection: @containers %>
+  </section>
+
+  <section class="form-links">
+    <%= f.submit %>
+  </section>
+
+<% end %>
