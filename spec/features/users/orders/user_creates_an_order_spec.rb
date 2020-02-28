@@ -9,10 +9,9 @@ feature 'User creates an order' do
   let!(:second_product) { 
     create(:product, selectable: second_selection) 
   }
-  let(:city) { Order::VALID_CITIES.sample }
   let(:email_result) { Mailgun::Client.deliveries.first[:from] }
   before do
-    create(:liquid_price, container: product.container, liquid: product.liquid, price: Money.new(500))
+    create(:liquid_price, container: product.container, liquid: product.liquid, price: Money.new(300))
     create(:liquid_price, container: second_product.container, liquid: second_product.liquid, price: Money.new(500))
     sign_in_user
   end
@@ -36,7 +35,7 @@ feature 'User creates an order' do
 
     click_on 'Checkout'
 
-    fill_in_order_information
+    fill_in 'Note', with: FFaker::Lorem.paragraph
 
     click_on 'Save'
 
@@ -47,38 +46,10 @@ feature 'User creates an order' do
   end
 
   def total
-    '$10.00'
+    Money.new( ((2 * 300 + 3 * 500) + 700 ) * 1.05 )
   end
 
   def delivery_date_for(order)
-    order.make_delivery_date_next_possible(city).strftime("Scheduled for delivery on %m/%d/%Y")
-  end
-
-  def fill_in_order_information
-    fill_in_billing_information
-    fill_in_shipping_information
-    fill_in 'Note', with: FFaker::Lorem.paragraph
-  end
-
-  def fill_in_billing_information
-    within('.billing-information') do
-      fill_in 'Name', with: FFaker::Name.name
-      fill_in 'Address', with: FFaker::Address.street_address
-      fill_in 'City', with: FFaker::Address.city
-      fill_in 'State/Province', with: FFaker::AddressUS.state
-      fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
-      select 'Canada', from: 'Country'
-    end
-  end
-
-  def fill_in_shipping_information
-    within('.shipping-information') do
-      fill_in 'Name', with: FFaker::Name.name
-      fill_in 'Address', with: FFaker::Address.street_address
-      fill_in 'City', with: city
-      fill_in 'State/Province', with: FFaker::AddressUS.state
-      fill_in 'Postal/Zip Code', with: FFaker::AddressUS.zip_code
-      select 'Canada', from: 'Country'
-    end
+    order.make_delivery_date_next_possible('Vancouver').strftime("Scheduled for delivery on %m/%d/%Y")
   end
 end

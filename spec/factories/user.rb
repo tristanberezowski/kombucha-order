@@ -5,7 +5,7 @@ FactoryBot.define do
     name { FFaker::Name.name }
     company_name { FFaker::Company.name }
     shipping_address { FFaker::AddressCA.street_address }
-    shipping_city { FFaker::AddressCA.city }
+    shipping_city { 'Vancouver' }
     shipping_postal { FFaker::AddressCA.postal_code }
     shipping_province { FFaker::AddressCA.province }
   end

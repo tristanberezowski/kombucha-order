@@ -84,6 +84,14 @@ class Order < ApplicationRecord
     end
   end
 
+  def add_user_information(user)
+    self.user_id = user.id
+    self.shipping_address = user.shipping_address
+    self.shipping_city = user.shipping_city
+    self.shipping_postal = user.shipping_postal
+    self.shipping_province = user.shipping_province
+  end
+
   def delivery_fee
     user.delivery_fee
   end

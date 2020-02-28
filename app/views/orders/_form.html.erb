@@ -1,25 +1,5 @@
 <%= simple_form_for order do |f| %>
   <section class="form-inputs">
-    <fieldset class="billing-information">
-      <legend>Billing Information</legend>
-      <%= f.input :billing_name, label: 'Name' %>
-      <%= f.input :billing_address, label: 'Address' %>
-      <%= f.input :billing_city, label: 'City' %>
-      <%= f.input :billing_postal, label: 'Postal/Zip Code' %>
-      <%= f.input :billing_province, label: 'State/Province' %>
-      <%= f.input :billing_country, label: 'Country' %>
-    </fieldset>
-
-    <fieldset class="shipping-information">
-      <legend>Shipping Information</legend>
-      <%= f.input :shipping_name, label: 'Name' %>
-      <%= f.input :shipping_address, label: 'Address' %>
-      <%= f.input :shipping_city, label: 'City' %>
-      <%= f.input :shipping_postal, label: 'Postal/Zip Code' %>
-      <%= f.input :shipping_province, label: 'State/Province' %>
-      <%= f.input :shipping_country, label: 'Country' %>
-    </fieldset>
-
     <%= f.input :note %>
   </section>
 

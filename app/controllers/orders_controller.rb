@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.add_user_information(current_user)
     @order.user = current_user
     @order.add_products(cart_products)
     if @order.save
