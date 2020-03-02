@@ -10,15 +10,8 @@
     <div class="shipping-information">
       <h4>Shipping Information</h4>
       <p>Name: <%= @order.shipping_name %></p>
-      <p>Address: <%= @order.shipping_address %>, <%= @order.shipping_city %>, <%= @order.shipping_province %>, <%= @order.shipping_country %></p>
+      <p>Address: <%= @order.shipping_address %>, <%= @order.shipping_city %></p>
       <p>Postal Code: <%= @order.shipping_postal %></p>
-    </div>
-
-    <div class="billing-information">
-      <h4>Billing Information</h4>
-      <p>Name: <%= @order.billing_name %></p>
-      <p>Address: <%= @order.billing_address %>, <%= @order.billing_city %>, <%= @order.billing_province %>, <%= @order.billing_country %></p>
-      <p>Postal Code: <%= @order.billing_postal %></p>
     </div>
 
     <p>Notes: <%= @order.note %></p>

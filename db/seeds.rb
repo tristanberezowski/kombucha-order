@@ -5,6 +5,7 @@ Invite.destroy_all
 RealmId.destroy_all
 RefreshToken.destroy_all
 Admin.destroy_all
+CartProduct.destroy_all
 Cart.destroy_all
 OrderProduct.destroy_all
 Order.destroy_all
@@ -109,8 +110,8 @@ bottles = Container.create!(name: "Twelve 375mL Bottles", volume: 12 * 375, envi
 
 # Liquid Prices
 LiquidPrice.create!(container: keg, liquid: water, price: Money.new(3500))
-LiquidPrice.create!(container: bottles, liquid: kombucha, price: Money.new(3500))
-LiquidPrice.create!(container: keg, liquid: kombucha, price: Money.new(325 * 12))
+LiquidPrice.create!(container: bottles, liquid: kombucha, price: Money.new(325 * 12))
+LiquidPrice.create!(container: keg, liquid: kombucha, price: Money.new(11000))
 
 
 # Products
