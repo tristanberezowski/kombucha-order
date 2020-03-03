@@ -7,6 +7,8 @@ class Order < ApplicationRecord
   has_many :order_products
   has_many :products, through: :order_products
 
+  attr_reader :created_at
+
   after_create :email_receipt
 
   aasm :delivery_status, column: :delivery_status do

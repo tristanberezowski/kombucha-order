@@ -26,13 +26,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :billing_name,
-      :billing_address,
-      :billing_city,
-      :billing_postal,
-      :billing_province,
-      :billing_country,
-      :shipping_name,
       :shipping_address,
       :shipping_city,
       :shipping_postal,
