@@ -31,7 +31,7 @@ gem 'aasm'
 gem 'cocoon'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'faraday'
-gem 'quickbooks-ruby'
+gem 'intuit-oauth'
 
 group :development do
   gem "listen"

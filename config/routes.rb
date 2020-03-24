@@ -51,5 +51,6 @@ Rails.application.routes.draw do
     resources :refresh_tokens, only: [:new, :create]
     resources :liquid_prices, only: [:index, :edit, :update, :new, :create]
     get '/quickbooks', to: 'quickbooks#index'
+    get '/quickbooks/authorize', to: 'quickbooks#authorize'
   end
 end

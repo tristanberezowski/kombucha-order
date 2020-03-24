@@ -1,34 +1,22 @@
 require "base64"
+require 'intuit-oauth'
 
 class Admin::QuickbooksController < Admin::ApplicationController
+
+  def authorize
+    redirect_url = "http://0aec4fc5.ngrok.io/admin/quickbooks/authorize/"
+    oauth_client = IntuitOAuth::Client.new(ENV['OAUTH_CLIENT_ID'], ENV['OAUTH_CLIENT_SECRET'], redirect_url, 'sandbox')
+    scopes = [
+        IntuitOAuth::Scopes::OPENID
+    ]
+    authorizationCodeUrl = oauth_client.code.get_auth_uri(scopes)
+    @redirect = authorizationCodeUrl
+
+  end
+
   def index
-    qb_access_token = ""
-    qb_refresh_token = ""
-    client_id = ""
-    client_secret = ""
-
-
-    response = Faraday.post("https://sandbox.api.intuit.com/oauth2/") do |req|
-      req.headers['Authorization'] = "Bearer #{qb_access_token}"
-      req.headers['Accept'] = 'application/json',
-      req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-    end
-
-
-    # Below is to refresh access token with refresh token
-    # response = Faraday.post("https://sandbox.api.intuit.com/oauth2/v1/tokens/bearer?grant_type=refresh_token&refresh_token=#{qb_refresh_token}") do |req|
-    #   req.headers['Authorization'] = "Basic #{Base64.strict_encode64(client_id + ":" + client_secret)}"
-    #   req.headers['Accept'] = 'application/json',
-    #   req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-    # end
-    @user_info = response
-
-    # qb_access_token = AccessToken.last
-    # qb_refresh_token = RefreshToken.last
-
-    # access_token = OAuth2::AccessToken.new(
-    #   oauth2_client, qb_access_token, refresh_token: qb_refresh_token
-    # )
+    oauth_client = IntuitOAuth::Client.first
+    @result = oauth_client.token.get_bearer_token('The_authorization_code')
 
   end
 end
