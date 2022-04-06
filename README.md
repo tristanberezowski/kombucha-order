@@ -5,7 +5,6 @@
 This project is a Ruby on Rails Web Application designed to allow vendors to order kombucha online in order to replace order by email.
 The Kombucha Company would then be able to see active orders, expected delivery date, as well as total kombucha needed for production.
 The automated testing using Rspec and OOP practice were the main learning outcomes from this project.
-This project required implementation of Oauth-intuit to automatically input orders, however it required the Kombucha Company to authenticate/login manually which wasn't feasible. This project was not purchased as a result.
 
 The stack includes:
 ##### Rails / HTML ERB / SASS / PostgreSQL
